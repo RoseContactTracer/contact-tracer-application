@@ -8,9 +8,10 @@ This application is intended to aid in the contact-tracing efforts at Rose-Hulma
 ### Frontend:
 To run the angular application run this command on the command line with the directory open:
 
-> ng serve --open
+    ng serve --open
 
-version info:
+<h3> version info </h3>
+    
     Angular CLI: 10.1.6
     Node: 12.19.0
     OS: win32 x64
