@@ -9,7 +9,7 @@ import java.sql.Statement;
 
 public class DatabaseConnector {
 
-	private final String url = "jdbc:postgresql://localhost:5432/CovidTracer";
+	private final String url = "jdbc:postgresql://covidtracer.csse.rose-hulman.edu:5432/covidtracer";
 	private final String user = "postgres";
 	private final String password = "Nn2Nm7PaNF#^";
 
@@ -19,7 +19,7 @@ public class DatabaseConnector {
 			conn = DriverManager.getConnection(url, user, password);
 			System.out.println("Connected to the PostgreSQL server successfully.");
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 
 		return conn;
