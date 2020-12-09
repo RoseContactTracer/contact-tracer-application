@@ -35,7 +35,16 @@ To run the angular application run this command on the command line with the dir
 
 
 ### Backend: 
-### Database: 
+
+
+### Database: PostgreSQL
+https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
+Version 13.1 Windows x86-64
+
+
+## How to copy the current server to your machine
+TODO: Fill this out once we know how to
+
 
 ## Build/Run Instructions: 
 
