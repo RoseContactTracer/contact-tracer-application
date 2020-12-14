@@ -2,13 +2,20 @@ package edu.rosehulman.covidtracer.postgresql;
 
 public class Person {
 	
+	private Integer id;
 	private String firstName;
 	private String middleName;
 	private String lastName;
 	private String email;
 	private String phone;
 	private String residence;
-
+	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public String getFirstName() {
 		return firstName;
 	}

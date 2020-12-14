@@ -11,12 +11,13 @@ public class PersonResultSetExtractor implements ResultSetExtractor<Object> {
 	@Override
 	public Object extractData(ResultSet rs) throws SQLException, DataAccessException {
 		Person person = new Person();
-		person.setFirstName(rs.getString(1));
-		person.setMiddleName(rs.getString(2));
-		person.setLastName(rs.getString(3));
-		person.setEmail(rs.getString(4));
-		person.setPhone(rs.getString(5));
-		person.setResidence(rs.getString(6));
+		person.setId(rs.getInt(1));
+		person.setFirstName(rs.getString(2));
+		person.setMiddleName(rs.getString(3));
+		person.setLastName(rs.getString(4));
+		person.setEmail(rs.getString(5));
+		person.setPhone(rs.getString(6));
+		person.setResidence(rs.getString(7));
 		return person;
 	}
 
