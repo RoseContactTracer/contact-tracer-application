@@ -18,7 +18,7 @@ public class PersonDao {
 		JdbcTemplate insert = new JdbcTemplate(dataSource);
         insert.update("INSERT INTO public.\"Person\"(\r\n" + 
         		"	\"First Name\", \"Middle Name\", \"Last Name\", \"Email\", \"Phone\", \"Residence\")\r\n" + 
-        		"	VALUES (?, ?, ?, ?, ?, ?, ?);",
+        		"	VALUES (?, ?, ?, ?, ?, ?);",
                 new Object[] { firstName, middleName, lastName, email,  phone, residence});
 	}
 
