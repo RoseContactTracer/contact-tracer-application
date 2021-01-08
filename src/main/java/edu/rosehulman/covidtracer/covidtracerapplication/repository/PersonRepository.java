@@ -3,73 +3,40 @@ package edu.rosehulman.covidtracer.covidtracerapplication.repository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-public class PersonRepository<Person, ID> implements PagingAndSortingRepository<Person, ID> {
-    @Override
-    public Iterable<Person> findAll(Sort sort) {
-        return null;
-    }
+@Repository
+public interface PersonRepository<Person, Integer> extends PagingAndSortingRepository<Person, Integer> {
 
-    @Override
-    public Page<Person> findAll(Pageable pageable) {
-        return null;
-    }
+    /*Note: Method stubs left in for reference */
 
-    @Override
-    public <S extends Person> S save(S entity) {
-        return null;
-    }
+    public Iterable<Person> findAll(Sort sort);
 
-    @Override
-    public <S extends Person> Iterable<S> saveAll(Iterable<S> entities) {
-        return null;
-    }
+    public Page<Person> findAll(Pageable pageable);
 
-    @Override
-    public Optional<Person> findById(ID id) {
-        return Optional.empty();
-    }
+    public <S extends Person> S save(S entity);
 
-    @Override
-    public boolean existsById(ID id) {
-        return false;
-    }
+    public <S extends Person> Iterable<S> saveAll(Iterable<S> entities);
 
-    @Override
-    public Iterable<Person> findAll() {
-        return null;
-    }
+    public Optional<Person> findById(Integer id);
 
-    @Override
-    public Iterable<Person> findAllById(Iterable<ID> ids) {
-        return null;
-    }
+    public boolean existsById(Integer id);
 
-    @Override
-    public long count() {
-        return 0;
-    }
+    public Iterable<Person> findAll();
 
-    @Override
-    public void deleteById(ID id) {
+    public Iterable<Person> findAllById(Iterable<Integer> ids);
 
-    }
+    public long count();
 
-    @Override
-    public void delete(Person entity) {
+    public void deleteById(Integer id);
 
-    }
+    public void delete(Person entity);
 
-    @Override
-    public void deleteAll(Iterable<? extends Person> entities) {
+    public void deleteAll(Iterable<? extends Person> entities);
 
-    }
-
-    @Override
-    public void deleteAll() {
-
-    }
+    public void deleteAll();
 }

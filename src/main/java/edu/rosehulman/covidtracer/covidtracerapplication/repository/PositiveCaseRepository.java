@@ -4,72 +4,38 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-public class PositiveCaseRepository<PositiveCase, ID> implements PagingAndSortingRepository<PositiveCase, ID> {
-    @Override
-    public Iterable<PositiveCase> findAll(Sort sort) {
-        return null;
-    }
+@Repository
+public interface PositiveCaseRepository<PositiveCase, Integer> extends PagingAndSortingRepository<PositiveCase, Integer> {
 
-    @Override
-    public Page<PositiveCase> findAll(Pageable pageable) {
-        return null;
-    }
+    /* Note: Method stubs left in for reference */
 
-    @Override
-    public <S extends PositiveCase> S save(S entity) {
-        return null;
-    }
+    public Iterable<PositiveCase> findAll(Sort sort);
 
-    @Override
-    public <S extends PositiveCase> Iterable<S> saveAll(Iterable<S> entities) {
-        return null;
-    }
+    public Page<PositiveCase> findAll(Pageable pageable);
 
-    @Override
-    public Optional<PositiveCase> findById(ID id) {
-        return Optional.empty();
-    }
+    public <S extends PositiveCase> S save(S entity);
 
-    @Override
-    public boolean existsById(ID id) {
-        return false;
-    }
+    public <S extends PositiveCase> Iterable<S> saveAll(Iterable<S> entities);
 
-    @Override
-    public Iterable<PositiveCase> findAll() {
-        return null;
-    }
+    public Optional<PositiveCase> findById(Integer id);
 
-    @Override
-    public Iterable<PositiveCase> findAllById(Iterable<ID> ids) {
-        return null;
-    }
+    public boolean existsById(Integer id);
 
-    @Override
-    public long count() {
-        return 0;
-    }
+    public Iterable<PositiveCase> findAll();
 
-    @Override
-    public void deleteById(ID id) {
+    public Iterable<PositiveCase> findAllById(Iterable<Integer> ids);
 
-    }
+    public long count();
 
-    @Override
-    public void delete(PositiveCase entity) {
+    public void deleteById(Integer id);
 
-    }
+    public void delete(PositiveCase entity);
 
-    @Override
-    public void deleteAll(Iterable<? extends PositiveCase> entities) {
+    public void deleteAll(Iterable<? extends PositiveCase> entities);
 
-    }
-
-    @Override
-    public void deleteAll() {
-
-    }
+    public void deleteAll();
 }

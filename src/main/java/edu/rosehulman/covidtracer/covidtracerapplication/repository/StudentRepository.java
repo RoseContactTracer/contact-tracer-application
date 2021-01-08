@@ -4,72 +4,38 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-public class StudentRepository<Student, ID> implements PagingAndSortingRepository<Student, ID> {
-    @Override
-    public Iterable<Student> findAll(Sort sort) {
-        return null;
-    }
+@Repository
+public interface StudentRepository<Student, Integer> extends PagingAndSortingRepository<Student, Integer> {
 
-    @Override
-    public Page<Student> findAll(Pageable pageable) {
-        return null;
-    }
+    /* Note: Method stubs left in for reference */
 
-    @Override
-    public <S extends Student> S save(S entity) {
-        return null;
-    }
+    public Iterable<Student> findAll(Sort sort);
 
-    @Override
-    public <S extends Student> Iterable<S> saveAll(Iterable<S> entities) {
-        return null;
-    }
+    public Page<Student> findAll(Pageable pageable);
 
-    @Override
-    public Optional<Student> findById(ID id) {
-        return Optional.empty();
-    }
+    public <S extends Student> S save(S entity);
 
-    @Override
-    public boolean existsById(ID id) {
-        return false;
-    }
+    public <S extends Student> Iterable<S> saveAll(Iterable<S> entities);
 
-    @Override
-    public Iterable<Student> findAll() {
-        return null;
-    }
+    public Optional<Student> findById(Integer id);
 
-    @Override
-    public Iterable<Student> findAllById(Iterable<ID> ids) {
-        return null;
-    }
+    public boolean existsById(Integer id);
 
-    @Override
-    public long count() {
-        return 0;
-    }
+    public Iterable<Student> findAll();
 
-    @Override
-    public void deleteById(ID id) {
+    public Iterable<Student> findAllById(Iterable<Integer> ids);
 
-    }
+    public long count();
 
-    @Override
-    public void delete(Student entity) {
+    public void deleteById(Integer id);
 
-    }
+    public void delete(Student entity);
 
-    @Override
-    public void deleteAll(Iterable<? extends Student> entities) {
+    public void deleteAll(Iterable<? extends Student> entities);
 
-    }
-
-    @Override
-    public void deleteAll() {
-
-    }
+    public void deleteAll();
 }

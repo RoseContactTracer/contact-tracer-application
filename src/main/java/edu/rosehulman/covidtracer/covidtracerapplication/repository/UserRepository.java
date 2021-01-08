@@ -4,72 +4,38 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-public class UserRepository<User, ID> implements PagingAndSortingRepository<User, ID> {
-    @Override
-    public Iterable<User> findAll(Sort sort) {
-        return null;
-    }
+@Repository
+public interface UserRepository<User, Integer> extends PagingAndSortingRepository<User, Integer> {
 
-    @Override
-    public Page<User> findAll(Pageable pageable) {
-        return null;
-    }
+    /*Note: Method stubs left in for reference */
 
-    @Override
-    public <S extends User> S save(S entity) {
-        return null;
-    }
+    public Iterable<User> findAll(Sort sort);
 
-    @Override
-    public <S extends User> Iterable<S> saveAll(Iterable<S> entities) {
-        return null;
-    }
+    public Page<User> findAll(Pageable pageable);
 
-    @Override
-    public Optional<User> findById(ID id) {
-        return Optional.empty();
-    }
+    public <S extends User> S save(S entity);
 
-    @Override
-    public boolean existsById(ID id) {
-        return false;
-    }
+    public <S extends User> Iterable<S> saveAll(Iterable<S> entities);
 
-    @Override
-    public Iterable<User> findAll() {
-        return null;
-    }
+    public Optional<User> findById(Integer id);
 
-    @Override
-    public Iterable<User> findAllById(Iterable<ID> ids) {
-        return null;
-    }
+    public boolean existsById(Integer id);
 
-    @Override
-    public long count() {
-        return 0;
-    }
+    public Iterable<User> findAll();
 
-    @Override
-    public void deleteById(ID id) {
+    public Iterable<User> findAllById(Iterable<Integer> ids);
 
-    }
+    public long count();
 
-    @Override
-    public void delete(User entity) {
+    public void deleteById(Integer id);
 
-    }
+    public void delete(User entity);
 
-    @Override
-    public void deleteAll(Iterable<? extends User> entities) {
+    public void deleteAll(Iterable<? extends User> entities);
 
-    }
-
-    @Override
-    public void deleteAll() {
-
-    }
+    public void deleteAll();
 }
