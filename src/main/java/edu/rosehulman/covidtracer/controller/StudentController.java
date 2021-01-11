@@ -1,4 +1,4 @@
-package edu.rosehulman.covidtracer.covidtracerapplication.controller;
+package edu.rosehulman.covidtracer.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
