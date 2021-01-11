@@ -1,7 +1,7 @@
-package edu.rosehulman.covidtracer.covidtracerapplication.controller;
+package edu.rosehulman.covidtracer.controller;
 
-import edu.rosehulman.covidtracer.covidtracerapplication.model.Person;
-import edu.rosehulman.covidtracer.covidtracerapplication.service.PersonService;
+import edu.rosehulman.covidtracer.model.Person;
+import edu.rosehulman.covidtracer.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

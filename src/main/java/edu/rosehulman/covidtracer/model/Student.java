@@ -1,22 +1,24 @@
-package edu.rosehulman.covidtracer.covidtracerapplication.model;
-
-import org.hibernate.annotations.NaturalId;
+package edu.rosehulman.covidtracer.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 
 @Entity
-@Table(name = "Student")
 public class Student implements Serializable {
 
     @Id
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID")
-    private Person person;
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    private int tableStudentID;
+
 
     @Column(name = "StudentID")
     private String studentID;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Person person;
+
+
 
     @Column(name = "GreekAffiliation")
     private String greekAffiliation;
@@ -32,6 +34,20 @@ public class Student implements Serializable {
         this.athletics = athletics;
     }
 
+    public Person getPerson() {
+        return person;
+    }
 
+    public ArrayList<String> getAthletics() {
+        return athletics;
+    }
+
+    public String getGreekAffiliation() {
+        return greekAffiliation;
+    }
+
+    public String getStudentID() {
+        return studentID;
+    }
 
 }

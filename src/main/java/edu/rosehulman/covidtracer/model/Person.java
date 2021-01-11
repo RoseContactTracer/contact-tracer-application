@@ -1,16 +1,16 @@
-package edu.rosehulman.covidtracer.covidtracerapplication.model;
+package edu.rosehulman.covidtracer.model;
 
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "Person")
 public class Person implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(nullable = false)
-    private int ID;
+    private int personID;
 
     @Column(name = "FirstName", nullable = false)
     private String firstName;
@@ -39,5 +39,31 @@ public class Person implements Serializable {
         this.residence = res;
     }
 
+    public int getPersonID() {
+        return personID;
+    }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getResidence() {
+        return residence;
+    }
 }
