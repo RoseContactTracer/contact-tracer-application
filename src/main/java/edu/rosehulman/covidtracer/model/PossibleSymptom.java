@@ -1,5 +1,40 @@
 package edu.rosehulman.covidtracer.model;
 
-public class PossibleSymptom {
+import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+public class PossibleSymptom implements Serializable {
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    @Column(name = "ID", nullable = false)
+    private int ID;
+	
+	@Column(name = "Name")
+	private String name;
+	
+	@Column(name = "Description")
+	private String description;
+	
+	public PossibleSymptom(String name, String description) {
+		this.name = name;
+		this.description = description;
+	}
+
+	public int getID() {
+		return ID;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+	
 }

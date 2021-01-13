@@ -15,12 +15,19 @@ public class PositiveCase implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Person person;
-
+    
     private Date testDate;
 
     private boolean needsTransportation;
 
     public PositiveCase() {}
+    
+    public PositiveCase(Person person, Date testDate, Date symptomaticStartDate, boolean needsTransportation) {
+    	this.person = person;
+    	this.testDate = testDate;
+    	this.symptomaticStartDate = symptomaticStartDate;
+    	this.needsTransportation = needsTransportation;
+    }
 
     public Date getSymptomaticStartDate() {
         return symptomaticStartDate;

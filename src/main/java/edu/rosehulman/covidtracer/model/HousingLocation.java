@@ -1,5 +1,45 @@
 package edu.rosehulman.covidtracer.model;
 
-public class HousingLocation {
+import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+public class HousingLocation implements Serializable {
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    @Column(name = "ID", nullable = false)
+    private int ID;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "PersonID")
+    private Person person;
+	
+	@Column(name = "Address")
+	private String address;
+	
+	public HousingLocation() {}
+	
+	public HousingLocation(Person person, String address) {
+		this.person = person;
+		this.address = address;
+	}
+
+	public int getID() {
+		return ID;
+	}
+
+	public Person getPerson() {
+		return person;
+	}
+
+	public String getAddress() {
+		return address;
+	}
 }

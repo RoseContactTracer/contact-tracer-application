@@ -1,5 +1,11 @@
 package edu.rosehulman.covidtracer.repository;
 
-public class CloseContactRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import edu.rosehulman.covidtracer.model.CloseContact;
+
+@Repository
+public interface CloseContactRepository extends JpaRepository<CloseContact, Integer>{
 
 }

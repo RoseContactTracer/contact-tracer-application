@@ -1,5 +1,11 @@
 package edu.rosehulman.covidtracer.repository;
 
-public class PositivePoolRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import edu.rosehulman.covidtracer.model.PositivePool;
+
+@Repository
+public interface PositivePoolRepository extends JpaRepository<PositivePool, Integer> {
 
 }

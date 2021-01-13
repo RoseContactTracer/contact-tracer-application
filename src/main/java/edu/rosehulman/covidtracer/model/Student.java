@@ -7,22 +7,22 @@ import java.util.ArrayList;
 @Entity
 public class Student implements Serializable {
 
-    @Id
+	@Id
     @GeneratedValue(strategy = GenerationType.TABLE)
+    @Column(name = "ID")
     private int tableStudentID;
-
 
     @Column(name = "StudentID")
     private String studentID;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PersonID")
     private Person person;
-
-
 
     @Column(name = "GreekAffiliation")
     private String greekAffiliation;
-
+    
+    @Column(name = "Athletics")
     private ArrayList<String> athletics;
 
     public Student(){}
