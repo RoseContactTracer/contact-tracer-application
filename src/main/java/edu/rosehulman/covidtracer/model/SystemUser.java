@@ -8,8 +8,8 @@ public class SystemUser implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private int systemUserID;
+    @Column(name = "ID", nullable = false, columnDefinition = "serial")
+    private int ID;
 
     @OneToOne(fetch = FetchType.EAGER)
     private Person person;
@@ -36,8 +36,8 @@ public class SystemUser implements Serializable {
         return person;
     }
 
-    public int getSystemUserID() {
-        return systemUserID;
+    public int ID() {
+        return ID;
     }
 
     public String getPassword() {

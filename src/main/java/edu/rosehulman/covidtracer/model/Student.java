@@ -9,8 +9,8 @@ public class Student implements Serializable {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private int tableStudentID;
+	@Column(name = "ID", nullable = false, columnDefinition = "serial")
+    private int ID;
 
     @Column(name = "StudentID")
     private String studentID;
@@ -34,7 +34,11 @@ public class Student implements Serializable {
         this.athletics = athletics;
     }
 
-    public Person getPerson() {
+    public int getID() {
+		return ID;
+	}
+
+	public Person getPerson() {
         return person;
     }
 

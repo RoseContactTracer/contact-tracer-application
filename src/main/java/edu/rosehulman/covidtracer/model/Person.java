@@ -9,8 +9,8 @@ public class Person implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
-    private int personID;
+    @Column(name = "ID", nullable = false, columnDefinition = "serial")
+    private int ID;
 
     @Column(name = "FirstName", nullable = false)
     private String firstName;
@@ -41,8 +41,8 @@ public class Person implements Serializable {
         this.residence = res;
     }
 
-    public int getPersonID() {
-        return personID;
+    public int getID() {
+        return ID;
     }
 
     public String getEmail() {

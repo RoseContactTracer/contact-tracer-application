@@ -9,7 +9,7 @@ public class PositiveCase implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", nullable = false)
+    @Column(name = "ID", nullable = false, columnDefinition = "serial")
     private int ID;
 
     private Date symptomaticStartDate;
