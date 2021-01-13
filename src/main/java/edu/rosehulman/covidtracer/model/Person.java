@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class Person implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
     private int personID;
 
@@ -21,11 +21,13 @@ public class Person implements Serializable {
     @Column(name = "LastName", nullable = false)
     private String lastName;
 
+    @Column(name = "Email", nullable = false, unique = true)
     private String email;
 
     @Column(name = "Phone")
     private String phoneNumber;
 
+    @Column(name = "Residence")
     private String residence;
 
     public Person() {}

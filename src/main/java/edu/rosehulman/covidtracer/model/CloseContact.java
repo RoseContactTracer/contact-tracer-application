@@ -16,7 +16,7 @@ import javax.persistence.ManyToOne;
 public class CloseContact implements Serializable {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false)
     private int ID;
 	

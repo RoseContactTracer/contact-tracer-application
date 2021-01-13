@@ -8,14 +8,14 @@ import java.util.ArrayList;
 public class Student implements Serializable {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private int tableStudentID;
 
     @Column(name = "StudentID")
     private String studentID;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PersonID")
     private Person person;
 

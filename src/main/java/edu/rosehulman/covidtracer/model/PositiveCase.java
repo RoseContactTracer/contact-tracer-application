@@ -8,7 +8,8 @@ import java.sql.Date;
 public class PositiveCase implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID", nullable = false)
     private int ID;
 
     private Date symptomaticStartDate;

@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import edu.rosehulman.covidtracer.model.Person;
+
 @SpringBootApplication
 @EntityScan("/edu.rosehulman.covidtracer.model")
 @EnableJpaRepositories("/edu.rosehulman.covidtracer.repository")

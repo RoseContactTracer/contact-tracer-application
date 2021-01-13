@@ -7,7 +7,7 @@ import java.io.Serializable;
 public class SystemUser implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private int systemUserID;
 

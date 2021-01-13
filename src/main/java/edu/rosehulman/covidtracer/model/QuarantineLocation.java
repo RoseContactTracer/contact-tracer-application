@@ -15,7 +15,7 @@ import javax.persistence.ManyToOne;
 public class QuarantineLocation implements Serializable {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false)
     private int ID;
 	
