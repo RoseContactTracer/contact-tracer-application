@@ -24,12 +24,13 @@ public class PersonService {
         System.out.println("************PersonRepository autowired************  \n ->" + repository.getClass().getCanonicalName());
     }
     public List<Person> getAllPersons(Integer pageNum, Integer entriesPerPage, String sortBy){
-        Pageable pageProperties = PageRequest.of(pageNum, entriesPerPage, Sort.by(sortBy));
+        /*Pageable pageProperties = PageRequest.of(pageNum, entriesPerPage, Sort.by(sortBy));
         Page<Person> result = repository.findAll(pageProperties);
         if(result.hasContent()){
             return result.getContent();
         }
-        return new ArrayList<Person>();
+        return new ArrayList<Person>();*/
+        return repository.findAll();
     }
 
 }
