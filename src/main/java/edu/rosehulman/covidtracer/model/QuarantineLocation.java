@@ -1,6 +1,7 @@
 package edu.rosehulman.covidtracer.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -19,9 +21,8 @@ public class QuarantineLocation implements Serializable {
 	@Column(name = "ID", nullable = false, columnDefinition = "serial")
     private int ID;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "PersonID")
-    private Person person;
+	@ManyToMany(mappedBy = "quarantineLocations")
+	private Set<Person> people;
 	
 	@Column(name = "Address")
 	private String address;
@@ -36,7 +37,7 @@ public class QuarantineLocation implements Serializable {
 	private boolean isClean;
 	
 	public QuarantineLocation(Person person, String address, String roomIdentifier, boolean isFull, boolean isClean) {
-		this.person = person;
+		this.people.add(person);
 		this.address = address;
 		this.roomIdentifier = roomIdentifier;
 		this.isFull = isFull;
@@ -47,8 +48,8 @@ public class QuarantineLocation implements Serializable {
 		return ID;
 	}
 
-	public Person getPerson() {
-		return person;
+	public Set<Person> getPerson() {
+		return people;
 	}
 
 	public String getAddress() {

@@ -20,12 +20,16 @@ public class SystemUser implements Serializable {
     @Column(name = "Salt", nullable = false)
     private String salt;
 
-    @Column(name = "Role", nullable = false)
-    private String role;
+    @ManyToOne(fetch = FetchType.EAGER)
+	@JoinTable(name = "sys_user_to_role", joinColumns = @JoinColumn(name = "sys_user_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "ID"))
+	private Role role;
+    
+    @OneToOne(mappedBy = "user")
+    private ContactTracer contactTracer;
 
     public SystemUser(){}
 
-    public SystemUser(Person person, String password, String salt, String role){
+    public SystemUser(Person person, String password, String salt, Role role){
         this.person = person;
         this.password = password;
         this.salt = salt;
@@ -44,11 +48,12 @@ public class SystemUser implements Serializable {
         return password;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
     public String getSalt() {
         return salt;
     }
+    
 }

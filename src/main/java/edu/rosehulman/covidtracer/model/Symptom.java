@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -25,13 +26,17 @@ public class Symptom implements Serializable {
     private Person person;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "SymptomID")
+	@JoinTable(name = "possible_symptom_to_symptom", joinColumns = @JoinColumn(name = "symptom_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "possible_symptom_id", referencedColumnName = "ID"))
     private PossibleSymptom possibleSymptom;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "CaseID")
-    private PositiveCase positiveCase;
+	@JoinTable(name = "positive_case_to_symptom", joinColumns = @JoinColumn(name = "symptom_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "positive_case_id", referencedColumnName = "ID"))
+	private PositiveCase positiveCase;
 	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinTable(name = "close_contact_to_symptom", joinColumns = @JoinColumn(name = "symptom_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "close_contact_id", referencedColumnName = "ID"))
+	private CloseContact closeContact;
+    
 	@Column(name = "OnsetDate")
 	private Date onsetDate;
 	
