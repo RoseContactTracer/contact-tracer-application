@@ -16,20 +16,20 @@ import javax.persistence.OneToOne;
 public class ContactTracer {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", nullable = false, columnDefinition = "serial")
-    private int ID;
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID", nullable = false, columnDefinition = "serial")
+	private int ID;
+
 	@OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private SystemUser user;
-	
+	@JoinColumn(name = "user_id")
+	private SystemUser user;
+
 	@OneToMany(mappedBy = "ID")
-    @Column(name = "positive_case_id")
-    Set<PositiveCase> positiveCases;
-	
+	@Column(name = "positive_case_id")
+	Set<PositiveCase> positiveCases;
+
 	@OneToMany(mappedBy = "ID")
-    @Column(name = "positive_case_id")
-    Set<CloseContact> closeContacts;
-	
+	@Column(name = "positive_case_id")
+	Set<CloseContact> closeContacts;
+
 }

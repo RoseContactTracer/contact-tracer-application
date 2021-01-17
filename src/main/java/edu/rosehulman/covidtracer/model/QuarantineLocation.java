@@ -15,27 +15,27 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class QuarantineLocation implements Serializable {
-	
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID", nullable = false, columnDefinition = "serial")
-    private int ID;
-	
+	private int ID;
+
 	@ManyToMany(mappedBy = "quarantineLocations")
 	private Set<Person> people;
-	
+
 	@Column(name = "Address")
 	private String address;
-	
+
 	@Column(name = "RoomIdentifier")
 	private String roomIdentifier;
-	
+
 	@Column(name = "isFull")
 	private boolean isFull;
-	
+
 	@Column(name = "isClean")
 	private boolean isClean;
-	
+
 	public QuarantineLocation(Person person, String address, String roomIdentifier, boolean isFull, boolean isClean) {
 		this.people.add(person);
 		this.address = address;
@@ -67,5 +67,5 @@ public class QuarantineLocation implements Serializable {
 	public boolean isClean() {
 		return isClean;
 	}
-	
+
 }

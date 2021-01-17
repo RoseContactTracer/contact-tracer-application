@@ -17,32 +17,33 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class CloseContact implements Serializable {
-	
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID", nullable = false, columnDefinition = "serial")
-    private int ID;
-	
+	private int ID;
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinTable(name = "person_to_close_contact", joinColumns = @JoinColumn(name = "close_contact_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "person_id", referencedColumnName = "ID"))
-    private Person person;
-	
+	private Person person;
+
 	@Column(name = "date_of_contact")
 	private Date dateOfContact;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "positive_case_id")
 	private PositiveCase positiveCase;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinTable(name = "contact_tracer_to_close_contact", joinColumns = @JoinColumn(name = "close_contact_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "contact_tracer_id", referencedColumnName = "ID"))
 	private ContactTracer contactTracer;
-	
+
 	@OneToMany(mappedBy = "ID")
-    @Column(name = "symptom_id")
-    private Set<Symptom> symptoms;
-	
-	public CloseContact() {}
+	@Column(name = "symptom_id")
+	private Set<Symptom> symptoms;
+
+	public CloseContact() {
+	}
 
 	public CloseContact(Person person, Date dateOfContact, PositiveCase positiveCase) {
 		this.person = person;
@@ -65,5 +66,5 @@ public class CloseContact implements Serializable {
 	public PositiveCase getPositiveCase() {
 		return positiveCase;
 	}
-	
+
 }

@@ -19,22 +19,23 @@ import javax.persistence.ManyToOne;
 public class PositivePool implements Serializable {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	@Column(name = "ID", nullable = false)
-    private int ID;
-	
+	private int ID;
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "Person1ID")
-    private Person person;
-	
+	private Person person;
+
 	@Column(name = "Date")
 	private Date date;
-	
+
 	@ManyToMany(mappedBy = "positivePools")
 	private Set<Person> people;
-	
-	public PositivePool() {}
-	
+
+	public PositivePool() {
+	}
+
 	public PositivePool(int ID, Person person, Date date) {
 		this.ID = ID;
 		this.person = person;
@@ -52,5 +53,5 @@ public class PositivePool implements Serializable {
 	public Date getDate() {
 		return date;
 	}
-	
+
 }

@@ -7,21 +7,22 @@ import javax.persistence.*;
 
 @Entity
 public class Role implements Serializable {
-	
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", nullable = false, columnDefinition = "serial")
-    private int ID;
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID", nullable = false, columnDefinition = "serial")
+	private int ID;
+
 	@Column(name = "Role")
 	private String role;
-	
+
 	@OneToMany(mappedBy = "ID")
-    @Column(name = "user_id")
-    Set<SystemUser> users;
-	
-	public Role() {}
-	
+	@Column(name = "user_id")
+	Set<SystemUser> users;
+
+	public Role() {
+	}
+
 	public Role(String role) {
 		this.role = role;
 	}
@@ -37,5 +38,5 @@ public class Role implements Serializable {
 	public Set<SystemUser> getUsers() {
 		return users;
 	}
-	
+
 }

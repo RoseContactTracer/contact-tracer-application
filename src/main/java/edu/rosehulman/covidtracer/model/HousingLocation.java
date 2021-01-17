@@ -12,21 +12,22 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class HousingLocation implements Serializable {
-	
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID", nullable = false, columnDefinition = "serial")
-    private int ID;
-	
+	private int ID;
+
 	@OneToMany(mappedBy = "housingLocations")
-    @Column(name = "person_id")
-    private Set<Person> people;
-	
+	@Column(name = "person_id")
+	private Set<Person> people;
+
 	@Column(name = "Address")
 	private String address;
-	
-	public HousingLocation() {}
-	
+
+	public HousingLocation() {
+	}
+
 	public HousingLocation(Person person, String address) {
 		this.people.add(person);
 		this.address = address;
@@ -43,5 +44,5 @@ public class HousingLocation implements Serializable {
 	public String getAddress() {
 		return address;
 	}
-	
+
 }

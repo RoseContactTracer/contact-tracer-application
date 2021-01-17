@@ -8,50 +8,51 @@ import java.util.ArrayList;
 public class Student implements Serializable {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID", nullable = false, columnDefinition = "serial")
-    private int ID;
+	private int ID;
 
-    @Column(name = "StudentID")
-    private String studentID;
+	@Column(name = "StudentID")
+	private String studentID;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "person_id")
-    private Person person;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "person_id")
+	private Person person;
 
-    @Column(name = "GreekAffiliation")
-    private String greekAffiliation;
-    
-    @Column(name = "Athletics")
-    private ArrayList<String> athletics;
+	@Column(name = "GreekAffiliation")
+	private String greekAffiliation;
 
-    public Student(){}
+	@Column(name = "Athletics")
+	private ArrayList<String> athletics;
 
-    public Student(Person person, String studentID, String greek, ArrayList<String> athletics){
-        this.person = person;
-        this.studentID = studentID;
-        this.greekAffiliation = greek;
-        this.athletics = athletics;
-    }
+	public Student() {
+	}
 
-    public int getID() {
+	public Student(Person person, String studentID, String greek, ArrayList<String> athletics) {
+		this.person = person;
+		this.studentID = studentID;
+		this.greekAffiliation = greek;
+		this.athletics = athletics;
+	}
+
+	public int getID() {
 		return ID;
 	}
 
 	public Person getPerson() {
-        return person;
-    }
+		return person;
+	}
 
-    public ArrayList<String> getAthletics() {
-        return athletics;
-    }
+	public ArrayList<String> getAthletics() {
+		return athletics;
+	}
 
-    public String getGreekAffiliation() {
-        return greekAffiliation;
-    }
+	public String getGreekAffiliation() {
+		return greekAffiliation;
+	}
 
-    public String getStudentID() {
-        return studentID;
-    }
+	public String getStudentID() {
+		return studentID;
+	}
 
 }

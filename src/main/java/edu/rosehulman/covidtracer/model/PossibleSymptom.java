@@ -12,22 +12,22 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class PossibleSymptom implements Serializable {
-	
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID", nullable = false, columnDefinition = "serial")
-    private int ID;
-	
+	private int ID;
+
 	@Column(name = "Name")
 	private String name;
-	
+
 	@Column(name = "Description")
 	private String description;
-	
+
 	@OneToMany(mappedBy = "possibleSymptom")
-    @Column(name = "symptom_id")
-    Set<Symptom> symptoms;
-	
+	@Column(name = "symptom_id")
+	Set<Symptom> symptoms;
+
 	public PossibleSymptom(String name, String description) {
 		this.name = name;
 		this.description = description;
@@ -44,5 +44,5 @@ public class PossibleSymptom implements Serializable {
 	public String getDescription() {
 		return description;
 	}
-	
+
 }
