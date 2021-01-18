@@ -15,7 +15,7 @@ public class Student implements Serializable {
 	@Column(name = "StudentID")
 	private String studentID;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "person_id")
 	private Person person;
 

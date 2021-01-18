@@ -2,6 +2,7 @@ package edu.rosehulman.covidtracer.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,16 +21,8 @@ public class ContactTracer {
 	@Column(name = "ID", nullable = false, columnDefinition = "serial")
 	private int ID;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id")
 	private SystemUser user;
-
-	@OneToMany(mappedBy = "ID")
-	@Column(name = "positive_case_id")
-	Set<PositiveCase> positiveCases;
-
-	@OneToMany(mappedBy = "ID")
-	@Column(name = "positive_case_id")
-	Set<CloseContact> closeContacts;
 
 }

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -23,24 +24,20 @@ public class CloseContact implements Serializable {
 	@Column(name = "ID", nullable = false, columnDefinition = "serial")
 	private int ID;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinTable(name = "person_to_close_contact", joinColumns = @JoinColumn(name = "close_contact_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "person_id", referencedColumnName = "ID"))
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "person_id")
 	private Person person;
 
 	@Column(name = "date_of_contact")
 	private Date dateOfContact;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "positive_case_id")
 	private PositiveCase positiveCase;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinTable(name = "contact_tracer_to_close_contact", joinColumns = @JoinColumn(name = "close_contact_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "contact_tracer_id", referencedColumnName = "ID"))
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "contact_tracer_id")
 	private ContactTracer contactTracer;
-
-	@OneToMany(mappedBy = "ID")
-	@Column(name = "symptom_id")
-	private Set<Symptom> symptoms;
 
 	public CloseContact() {
 	}

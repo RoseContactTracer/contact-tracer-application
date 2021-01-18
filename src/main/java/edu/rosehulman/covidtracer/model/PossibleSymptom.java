@@ -5,9 +5,12 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -23,10 +26,6 @@ public class PossibleSymptom implements Serializable {
 
 	@Column(name = "Description")
 	private String description;
-
-	@OneToMany(mappedBy = "possibleSymptom")
-	@Column(name = "symptom_id")
-	Set<Symptom> symptoms;
 
 	public PossibleSymptom(String name, String description) {
 		this.name = name;

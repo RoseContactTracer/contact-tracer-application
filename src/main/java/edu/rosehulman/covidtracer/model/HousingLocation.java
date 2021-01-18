@@ -18,27 +18,18 @@ public class HousingLocation implements Serializable {
 	@Column(name = "ID", nullable = false, columnDefinition = "serial")
 	private int ID;
 
-	@OneToMany(mappedBy = "housingLocations")
-	@Column(name = "person_id")
-	private Set<Person> people;
-
 	@Column(name = "Address")
 	private String address;
 
 	public HousingLocation() {
 	}
 
-	public HousingLocation(Person person, String address) {
-		this.people.add(person);
+	public HousingLocation(String address) {
 		this.address = address;
 	}
 
 	public int getID() {
 		return ID;
-	}
-
-	public Set<Person> getPeople() {
-		return people;
 	}
 
 	public String getAddress() {

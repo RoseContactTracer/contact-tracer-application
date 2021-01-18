@@ -3,6 +3,7 @@ package edu.rosehulman.covidtracer.model;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,7 +22,8 @@ public class QuarantineLocation implements Serializable {
 	@Column(name = "ID", nullable = false, columnDefinition = "serial")
 	private int ID;
 
-	@ManyToMany(mappedBy = "quarantineLocations")
+	@ManyToMany(mappedBy = "quarantineLocations", cascade = CascadeType.ALL)
+	@Column(name = "person_id")
 	private Set<Person> people;
 
 	@Column(name = "Address")

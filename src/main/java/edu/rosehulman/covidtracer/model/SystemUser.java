@@ -11,7 +11,8 @@ public class SystemUser implements Serializable {
 	@Column(name = "ID", nullable = false, columnDefinition = "serial")
 	private int ID;
 
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "person_id")
 	private Person person;
 
 	@Column(name = "Password", nullable = false)
@@ -20,12 +21,9 @@ public class SystemUser implements Serializable {
 	@Column(name = "Salt", nullable = false)
 	private String salt;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinTable(name = "sys_user_to_role", joinColumns = @JoinColumn(name = "sys_user_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "ID"))
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "role_id")
 	private Role role;
-
-	@OneToOne(mappedBy = "user")
-	private ContactTracer contactTracer;
 
 	public SystemUser() {
 	}

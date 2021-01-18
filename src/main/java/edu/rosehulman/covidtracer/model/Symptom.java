@@ -3,6 +3,7 @@ package edu.rosehulman.covidtracer.model;
 import java.io.Serializable;
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,20 +22,20 @@ public class Symptom implements Serializable {
 	@Column(name = "ID", nullable = false, columnDefinition = "serial")
 	private int ID;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "PersonID")
 	private Person person;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinTable(name = "possible_symptom_to_symptom", joinColumns = @JoinColumn(name = "symptom_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "possible_symptom_id", referencedColumnName = "ID"))
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "possible_symptom_id")
 	private PossibleSymptom possibleSymptom;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinTable(name = "positive_case_to_symptom", joinColumns = @JoinColumn(name = "symptom_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "positive_case_id", referencedColumnName = "ID"))
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "positive_case_id")
 	private PositiveCase positiveCase;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinTable(name = "close_contact_to_symptom", joinColumns = @JoinColumn(name = "symptom_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "close_contact_id", referencedColumnName = "ID"))
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "close_contact_id")
 	private CloseContact closeContact;
 
 	@Column(name = "OnsetDate")

@@ -13,8 +13,8 @@ public class PositiveCase implements Serializable {
 	@Column(name = "ID", nullable = false, columnDefinition = "serial")
 	private int ID;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinTable(name = "person_to_positive_case", joinColumns = @JoinColumn(name = "positive_case_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "person_id", referencedColumnName = "ID"))
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "person_id")
 	private Person person;
 
 	private Date symptomaticStartDate;
@@ -23,17 +23,9 @@ public class PositiveCase implements Serializable {
 
 	private boolean needsTransportation;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinTable(name = "contact_tracer_to_positive_case", joinColumns = @JoinColumn(name = "PositiveCaseID", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "contact_tracer_id", referencedColumnName = "ID"))
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "contact_tracer_id")
 	private ContactTracer contactTracer;
-	
-	@OneToMany(mappedBy = "contactTracer")
-    @Column(name = "close_contact_id")
-    Set<CloseContact> closeContacts;
-	
-	@OneToMany(mappedBy = "ID")
-    @Column(name = "symptom_id")
-    private Set<Symptom> symptoms;
 
 	public PositiveCase() {
 	}
@@ -63,5 +55,9 @@ public class PositiveCase implements Serializable {
 
 	public boolean isNeedsTransportation() {
 		return needsTransportation;
+	}
+	
+	public void setContactTracer(ContactTracer tracer) {
+		this.contactTracer = tracer;
 	}
 }

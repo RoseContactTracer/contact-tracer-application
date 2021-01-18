@@ -26,43 +26,29 @@ public class Person implements Serializable {
 
 	@Column(name = "phone")
 	private String phoneNumber;
+	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "housing_location_id")
+	private HousingLocation housingLocation;
 
-	@Column(name = "residence")
-	private String residence;
-
-	@OneToMany(mappedBy = "person")
-	@Column(name = "positive_case_id")
-	Set<PositiveCase> positiveCases;
-
-	@OneToMany(mappedBy = "person")
-	@Column(name = "close_contact_id")
-	Set<CloseContact> closeContacts;
-
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "person_to_positive_pools", joinColumns = @JoinColumn(name = "person_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "positive_pool_id", referencedColumnName = "ID"))
 	private Set<PositivePool> positivePools;
 
-	@ManyToOne(fetch = FetchType.EAGER, targetEntity = HousingLocation.class)
-	@JoinTable(name = "person_to_housing_location", joinColumns = @JoinColumn(name = "person_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "housing_location_id", referencedColumnName = "ID"))
-	private Set<HousingLocation> housingLocations;
-
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "person_to_positive_pools", joinColumns = @JoinColumn(name = "person_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "positive_pool_id", referencedColumnName = "ID"))
 	private Set<QuarantineLocation> quarantineLocations;
-
-	@OneToOne(mappedBy = "person")
-	private Student student;
 
 	public Person() {
 	}
 
-	public Person(String firstName, String middleName, String lastName, String email, String phone, String res) {
+	public Person(String firstName, String middleName, String lastName, String email, String phone, HousingLocation housing) {
 		this.firstName = firstName;
 		this.middleName = middleName;
 		this.lastName = lastName;
 		this.email = email;
 		this.phoneNumber = phone;
-		this.residence = res;
+		this.housingLocation = housing;
 	}
 
 	public int getID() {
@@ -89,11 +75,8 @@ public class Person implements Serializable {
 		return phoneNumber;
 	}
 
-	public String getResidence() {
-		return residence;
+	public HousingLocation getHousingLocation() {
+		return housingLocation;
 	}
 
-	public Set<PositiveCase> getPositiveCases() {
-		return positiveCases;
-	}
 }

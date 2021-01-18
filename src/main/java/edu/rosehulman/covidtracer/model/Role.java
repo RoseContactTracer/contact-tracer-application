@@ -16,10 +16,6 @@ public class Role implements Serializable {
 	@Column(name = "Role")
 	private String role;
 
-	@OneToMany(mappedBy = "ID")
-	@Column(name = "user_id")
-	Set<SystemUser> users;
-
 	public Role() {
 	}
 
@@ -33,10 +29,6 @@ public class Role implements Serializable {
 
 	public String getRole() {
 		return role;
-	}
-
-	public Set<SystemUser> getUsers() {
-		return users;
 	}
 
 }

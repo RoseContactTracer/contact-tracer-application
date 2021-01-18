@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,23 +23,19 @@ public class PositivePool implements Serializable {
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	@Column(name = "ID", nullable = false)
 	private int ID;
-
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "Person1ID")
-	private Person person;
+	
+	@ManyToMany(mappedBy = "positivePools", cascade = CascadeType.ALL)
+	private Set<Person> people;
 
 	@Column(name = "Date")
 	private Date date;
-
-	@ManyToMany(mappedBy = "positivePools")
-	private Set<Person> people;
 
 	public PositivePool() {
 	}
 
 	public PositivePool(int ID, Person person, Date date) {
 		this.ID = ID;
-		this.person = person;
+		this.people.add(person);
 		this.date = date;
 	}
 
@@ -46,8 +43,8 @@ public class PositivePool implements Serializable {
 		return ID;
 	}
 
-	public Person getPerson() {
-		return person;
+	public Set<Person> getPeople() {
+		return people;
 	}
 
 	public Date getDate() {
