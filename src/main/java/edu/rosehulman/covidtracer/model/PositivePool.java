@@ -25,9 +25,10 @@ public class PositivePool implements Serializable {
 	private int ID;
 	
 	@ManyToMany(mappedBy = "positivePools", cascade = CascadeType.ALL)
+	@Column(name = "person", nullable = false)
 	private Set<Person> people;
 
-	@Column(name = "Date")
+	@Column(name = "Date", nullable = false)
 	private Date date;
 
 	public PositivePool() {

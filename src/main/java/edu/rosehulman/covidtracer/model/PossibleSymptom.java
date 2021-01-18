@@ -21,7 +21,7 @@ public class PossibleSymptom implements Serializable {
 	@Column(name = "ID", nullable = false, columnDefinition = "serial")
 	private int ID;
 
-	@Column(name = "Name")
+	@Column(name = "Name", nullable = false, unique = true)
 	private String name;
 
 	@Column(name = "Description")

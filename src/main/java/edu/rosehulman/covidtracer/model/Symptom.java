@@ -23,11 +23,11 @@ public class Symptom implements Serializable {
 	private int ID;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "PersonID")
+	@JoinColumn(name = "person_id", nullable = false)
 	private Person person;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "possible_symptom_id")
+	@JoinColumn(name = "possible_symptom_id", nullable = false)
 	private PossibleSymptom possibleSymptom;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -38,7 +38,7 @@ public class Symptom implements Serializable {
 	@JoinColumn(name = "close_contact_id")
 	private CloseContact closeContact;
 
-	@Column(name = "OnsetDate")
+	@Column(name = "OnsetDate", nullable = false)
 	private Date onsetDate;
 
 	public Symptom(Person person, PossibleSymptom possibleSymptom, PositiveCase positiveCase, Date onsetDate) {

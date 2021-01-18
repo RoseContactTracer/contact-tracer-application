@@ -26,17 +26,17 @@ public class QuarantineLocation implements Serializable {
 	@Column(name = "person_id")
 	private Set<Person> people;
 
-	@Column(name = "Address")
+	@Column(name = "Address", nullable = false)
 	private String address;
 
 	@Column(name = "RoomIdentifier")
 	private String roomIdentifier;
 
-	@Column(name = "isFull")
-	private boolean isFull;
+	@Column(name = "isFull", nullable = false)
+	private boolean isFull = false;
 
-	@Column(name = "isClean")
-	private boolean isClean;
+	@Column(name = "isClean", nullable = false)
+	private boolean isClean = true;
 
 	public QuarantineLocation(Person person, String address, String roomIdentifier, boolean isFull, boolean isClean) {
 		this.people.add(person);

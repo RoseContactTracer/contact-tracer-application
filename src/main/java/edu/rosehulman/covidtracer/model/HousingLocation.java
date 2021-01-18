@@ -18,7 +18,7 @@ public class HousingLocation implements Serializable {
 	@Column(name = "ID", nullable = false, columnDefinition = "serial")
 	private int ID;
 
-	@Column(name = "Address")
+	@Column(name = "Address", nullable = false, unique = true)
 	private String address;
 
 	public HousingLocation() {

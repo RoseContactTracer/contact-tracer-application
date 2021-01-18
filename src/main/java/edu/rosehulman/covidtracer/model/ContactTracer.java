@@ -22,7 +22,7 @@ public class ContactTracer {
 	private int ID;
 
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id", nullable = false, unique = true)
 	private SystemUser user;
 
 }

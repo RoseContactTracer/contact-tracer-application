@@ -16,12 +16,15 @@ public class PositiveCase implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "person_id")
 	private Person person;
-
+	
+	@Column(name = "symptomatic_start_date")
 	private Date symptomaticStartDate;
 
+	@Column(name = "test_date", nullable = false)
 	private Date testDate;
 
-	private boolean needsTransportation;
+	@Column(name = "needs_transportation", nullable = false)
+	private boolean needsTransportation = false;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "contact_tracer_id")

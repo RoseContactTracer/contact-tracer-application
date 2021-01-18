@@ -12,7 +12,7 @@ public class SystemUser implements Serializable {
 	private int ID;
 
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "person_id")
+	@JoinColumn(name = "person_id", nullable = false, unique = true)
 	private Person person;
 
 	@Column(name = "Password", nullable = false)
@@ -22,7 +22,7 @@ public class SystemUser implements Serializable {
 	private String salt;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "role_id")
+	@JoinColumn(name = "role_id", nullable = false)
 	private Role role;
 
 	public SystemUser() {

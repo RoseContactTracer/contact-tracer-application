@@ -12,7 +12,7 @@ public class Student implements Serializable {
 	@Column(name = "ID", nullable = false, columnDefinition = "serial")
 	private int ID;
 
-	@Column(name = "StudentID")
+	@Column(name = "StudentID", nullable = false, unique = true)
 	private String studentID;
 
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

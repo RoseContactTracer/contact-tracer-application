@@ -13,7 +13,7 @@ public class Role implements Serializable {
 	@Column(name = "ID", nullable = false, columnDefinition = "serial")
 	private int ID;
 
-	@Column(name = "Role")
+	@Column(name = "Role", nullable = false, unique = true)
 	private String role;
 
 	public Role() {
