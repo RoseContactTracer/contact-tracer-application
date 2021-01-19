@@ -10,24 +10,22 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import edu.rosehulman.covidtracer.model.PositiveCase;
-import edu.rosehulman.covidtracer.model.QuarantineLocation;
-import edu.rosehulman.covidtracer.repository.PositiveCaseRepository;
-import edu.rosehulman.covidtracer.repository.QuarantineLocationRepository;
+import edu.rosehulman.covidtracer.model.CloseContact;
+import edu.rosehulman.covidtracer.repository.CloseContactRepository;
 
 @Service
-public class PositiveCaseService {
-
+public class CloseContactService {
+	
 	@Autowired
-    PositiveCaseRepository repository;
+    CloseContactRepository repository;
 
-    public List<PositiveCase> getAllStudents(){
+    public List<CloseContact> getAllStudents(){
         Pageable pageProperties = PageRequest.of(0, 10, Sort.by("id"));
-        Page<PositiveCase> result = repository.findAll(pageProperties);
+        Page<CloseContact> result = repository.findAll(pageProperties);
         if(result.hasContent()){
             return result.getContent();
         }
-        return new ArrayList<PositiveCase>();
+        return new ArrayList<CloseContact>();
     }
 	
 }

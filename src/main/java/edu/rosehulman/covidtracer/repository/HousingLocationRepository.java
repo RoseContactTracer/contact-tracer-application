@@ -1,10 +1,11 @@
 package edu.rosehulman.covidtracer.repository;
 
-import edu.rosehulman.covidtracer.model.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import edu.rosehulman.covidtracer.model.HousingLocation;
+
 @Repository
-public interface StudentRepository extends JpaRepository<Student, Integer> {
+public interface HousingLocationRepository extends JpaRepository<HousingLocation, Integer>{
 
 }

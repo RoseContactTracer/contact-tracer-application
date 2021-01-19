@@ -1,69 +1,78 @@
 package edu.rosehulman.covidtracer.model;
 
-
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 public class Person implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
-    @Column(nullable = false)
-    private int personID;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID", nullable = false, columnDefinition = "serial")
+	private int ID;
 
-    @Column(name = "FirstName", nullable = false)
-    private String firstName;
+	@Column(name = "first_name", nullable = false)
+	private String firstName;
 
-    @Column(name = "MiddleName")
-    private String middleName;
+	@Column(name = "middle_name")
+	private String middleName;
 
-    @Column(name = "LastName", nullable = false)
-    private String lastName;
+	@Column(name = "last_name", nullable = false)
+	private String lastName;
 
-    private String email;
+	@Column(name = "email", nullable = false, unique = true)
+	private String email;
 
-    @Column(name = "Phone")
-    private String phoneNumber;
+	@Column(name = "phone")
+	private String phoneNumber;
+	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "housing_location_id")
+	private HousingLocation housingLocation;
 
-    private String residence;
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "person_to_positive_pools", joinColumns = @JoinColumn(name = "person_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "positive_pool_id", referencedColumnName = "ID"))
+	private Set<PositivePool> positivePools;
 
-    public Person() {}
+	public Person() {
+	}
 
-    public Person(String firstName, String middleName, String lastName, String email, String phone, String res){
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phoneNumber = phone;
-        this.residence = res;
-    }
+	public Person(String firstName, String middleName, String lastName, String email, String phone, HousingLocation housing) {
+		this.firstName = firstName;
+		this.middleName = middleName;
+		this.lastName = lastName;
+		this.email = email;
+		this.phoneNumber = phone;
+		this.housingLocation = housing;
+	}
 
-    public int getPersonID() {
-        return personID;
-    }
+	public int getID() {
+		return ID;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public String getFirstName() {
-        return firstName;
-    }
+	public String getFirstName() {
+		return firstName;
+	}
 
-    public String getLastName() {
-        return lastName;
-    }
+	public String getLastName() {
+		return lastName;
+	}
 
-    public String getMiddleName() {
-        return middleName;
-    }
+	public String getMiddleName() {
+		return middleName;
+	}
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
 
-    public String getResidence() {
-        return residence;
-    }
+	public HousingLocation getHousingLocation() {
+		return housingLocation;
+	}
+
 }

@@ -6,49 +6,53 @@ import java.io.Serializable;
 @Entity
 public class SystemUser implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
-    @Column(name = "systemUserID")
-    private int systemUserIDID;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID", nullable = false, columnDefinition = "serial")
+	private int ID;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    private Person person;
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "person_id", nullable = false, unique = true)
+	private Person person;
 
-    @Column(name = "Password", nullable = false)
-    private String password;
+	@Column(name = "Password", nullable = false)
+	private String password;
 
-    @Column(name = "Salt", nullable = false)
-    private String salt;
+	@Column(name = "Salt", nullable = false)
+	private String salt;
 
-    @Column(name = "Role", nullable = false)
-    private String role;
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "role_id", nullable = false)
+	private Role role;
 
-    public SystemUser(){}
+	public SystemUser() {
+	}
 
-    public SystemUser(Person person, String password, String salt, String role){
-        this.person = person;
-        this.password = password;
-        this.salt = salt;
-        this.role = role;
-    }
+	public SystemUser(Person person, String password, String salt, Role role) {
+		this.person = person;
+		this.password = password;
+		this.salt = salt;
+		this.role = role;
+	}
 
-    public Person getPerson() {
-        return person;
-    }
+	public Person getPerson() {
+		return person;
+	}
 
-    public int getSystemUserIDID() {
-        return systemUserIDID;
-    }
+	public int ID() {
+		return ID;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public String getRole() {
-        return role;
-    }
+	public Role getRole() {
+		return role;
+	}
 
-    public String getSalt() {
-        return salt;
-    }
+	public String getSalt() {
+		return salt;
+	}
+
 }

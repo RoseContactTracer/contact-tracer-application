@@ -7,47 +7,52 @@ import java.util.ArrayList;
 @Entity
 public class Student implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
-    private int tableStudentID;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID", nullable = false, columnDefinition = "serial")
+	private int ID;
 
+	@Column(name = "StudentID", nullable = false, unique = true)
+	private String studentID;
 
-    @Column(name = "StudentID")
-    private String studentID;
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "person_id")
+	private Person person;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Person person;
+	@Column(name = "GreekAffiliation")
+	private String greekAffiliation;
 
+	@Column(name = "Athletics")
+	private ArrayList<String> athletics;
 
+	public Student() {
+	}
 
-    @Column(name = "GreekAffiliation")
-    private String greekAffiliation;
+	public Student(Person person, String studentID, String greek, ArrayList<String> athletics) {
+		this.person = person;
+		this.studentID = studentID;
+		this.greekAffiliation = greek;
+		this.athletics = athletics;
+	}
 
-    private ArrayList<String> athletics;
+	public int getID() {
+		return ID;
+	}
 
-    public Student(){}
+	public Person getPerson() {
+		return person;
+	}
 
-    public Student(Person person, String studentID, String greek, ArrayList<String> athletics){
-        this.person = person;
-        this.studentID = studentID;
-        this.greekAffiliation = greek;
-        this.athletics = athletics;
-    }
+	public ArrayList<String> getAthletics() {
+		return athletics;
+	}
 
-    public Person getPerson() {
-        return person;
-    }
+	public String getGreekAffiliation() {
+		return greekAffiliation;
+	}
 
-    public ArrayList<String> getAthletics() {
-        return athletics;
-    }
-
-    public String getGreekAffiliation() {
-        return greekAffiliation;
-    }
-
-    public String getStudentID() {
-        return studentID;
-    }
+	public String getStudentID() {
+		return studentID;
+	}
 
 }
