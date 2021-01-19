@@ -22,10 +22,6 @@ public class QuarantineLocation implements Serializable {
 	@Column(name = "ID", nullable = false, columnDefinition = "serial")
 	private int ID;
 
-	@ManyToMany(mappedBy = "quarantineLocations", cascade = CascadeType.ALL)
-	@Column(name = "person_id")
-	private Set<Person> people;
-
 	@Column(name = "Address", nullable = false)
 	private String address;
 
@@ -38,8 +34,7 @@ public class QuarantineLocation implements Serializable {
 	@Column(name = "isClean", nullable = false)
 	private boolean isClean = true;
 
-	public QuarantineLocation(Person person, String address, String roomIdentifier, boolean isFull, boolean isClean) {
-		this.people.add(person);
+	public QuarantineLocation(String address, String roomIdentifier, boolean isFull, boolean isClean) {
 		this.address = address;
 		this.roomIdentifier = roomIdentifier;
 		this.isFull = isFull;
@@ -48,10 +43,6 @@ public class QuarantineLocation implements Serializable {
 
 	public int getID() {
 		return ID;
-	}
-
-	public Set<Person> getPerson() {
-		return people;
 	}
 
 	public String getAddress() {

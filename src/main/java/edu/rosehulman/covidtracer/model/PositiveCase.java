@@ -17,11 +17,14 @@ public class PositiveCase implements Serializable {
 	@JoinColumn(name = "person_id")
 	private Person person;
 	
-	@Column(name = "symptomatic_start_date")
-	private Date symptomaticStartDate;
-
 	@Column(name = "test_date", nullable = false)
 	private Date testDate;
+	
+	@Column(name = "symptomatic_start_date")
+	private Date symptomaticStartDate;
+	
+	@Column(name = "quarantine_end_date")
+	private Date quarantineEndDate;
 
 	@Column(name = "needs_transportation", nullable = false)
 	private boolean needsTransportation = false;
@@ -29,15 +32,24 @@ public class PositiveCase implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "contact_tracer_id")
 	private ContactTracer contactTracer;
+	
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "quarantine_location_id")
+	private QuarantineLocation quarantineLocation;
 
 	public PositiveCase() {
 	}
 
-	public PositiveCase(Person person, Date testDate, Date symptomaticStartDate, boolean needsTransportation) {
+	public PositiveCase(Person person, Date testDate, Date symptomaticStartDate, Date quarantineEndDate, boolean needsTransportation) {
 		this.person = person;
 		this.testDate = testDate;
 		this.symptomaticStartDate = symptomaticStartDate;
+		this.quarantineEndDate = quarantineEndDate;
 		this.needsTransportation = needsTransportation;
+	}
+
+	public Date getQuarantineEndDate() {
+		return quarantineEndDate;
 	}
 
 	public Date getSymptomaticStartDate() {
@@ -63,4 +75,10 @@ public class PositiveCase implements Serializable {
 	public void setContactTracer(ContactTracer tracer) {
 		this.contactTracer = tracer;
 	}
+
+	public void setQuarantineLocation(QuarantineLocation quarantineLocation) {
+		this.quarantineLocation = quarantineLocation;
+	}
+	
+	
 }

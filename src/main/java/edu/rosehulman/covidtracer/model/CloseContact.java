@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class CloseContact implements Serializable {
@@ -30,6 +31,9 @@ public class CloseContact implements Serializable {
 
 	@Column(name = "date_of_contact")
 	private Date dateOfContact;
+	
+	@Column(name = "quarantine_end_date")
+	private Date quarantineEndDate;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "positive_case_id")
@@ -38,13 +42,18 @@ public class CloseContact implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "contact_tracer_id")
 	private ContactTracer contactTracer;
+	
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "quarantine_location_id")
+	private QuarantineLocation quarantineLocation;
 
 	public CloseContact() {
 	}
 
-	public CloseContact(Person person, Date dateOfContact, PositiveCase positiveCase) {
+	public CloseContact(Person person, Date dateOfContact, Date quarantineEndDate, PositiveCase positiveCase) {
 		this.person = person;
 		this.dateOfContact = dateOfContact;
+		this.quarantineEndDate = quarantineEndDate;
 		this.positiveCase = positiveCase;
 	}
 
@@ -60,8 +69,20 @@ public class CloseContact implements Serializable {
 		return dateOfContact;
 	}
 
+	public Date getQuarantineEndDate() {
+		return quarantineEndDate;
+	}
+
 	public PositiveCase getPositiveCase() {
 		return positiveCase;
+	}
+
+	public void setContactTracer(ContactTracer contactTracer) {
+		this.contactTracer = contactTracer;
+	}
+
+	public void setQuarantineLocation(QuarantineLocation quarantineLocation) {
+		this.quarantineLocation = quarantineLocation;
 	}
 
 }
