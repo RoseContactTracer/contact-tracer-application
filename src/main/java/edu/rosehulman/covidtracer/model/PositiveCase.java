@@ -79,6 +79,37 @@ public class PositiveCase implements Serializable {
 	public void setQuarantineLocation(QuarantineLocation quarantineLocation) {
 		this.quarantineLocation = quarantineLocation;
 	}
-	
+
+	public ContactTracer getContactTracer() {
+		return contactTracer;
+	}
+
+	public QuarantineLocation getQuarantineLocation() {
+		return quarantineLocation;
+	}
+
+	public void setID(int iD) {
+		ID = iD;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
+	}
+
+	public void setTestDate(Date testDate) {
+		this.testDate = testDate;
+	}
+
+	public void setSymptomaticStartDate(Date symptomaticStartDate) {
+		this.symptomaticStartDate = symptomaticStartDate;
+	}
+
+	public void setQuarantineEndDate(Date quarantineEndDate) {
+		this.quarantineEndDate = quarantineEndDate;
+	}
+
+	public void setNeedsTransportation(boolean needsTransportation) {
+		this.needsTransportation = needsTransportation;
+	}
 	
 }

@@ -20,6 +20,9 @@ public class Person implements Serializable {
 
 	@Column(name = "last_name", nullable = false)
 	private String lastName;
+	
+	@Column(name = "rose_id", unique = true)
+	private String roseID;
 
 	@Column(name = "email", nullable = false, unique = true)
 	private String email;
@@ -38,10 +41,11 @@ public class Person implements Serializable {
 	public Person() {
 	}
 
-	public Person(String firstName, String middleName, String lastName, String email, String phone, HousingLocation housing) {
+	public Person(String firstName, String middleName, String lastName, String roseID, String email, String phone, HousingLocation housing) {
 		this.firstName = firstName;
 		this.middleName = middleName;
 		this.lastName = lastName;
+		this.roseID = roseID;
 		this.email = email;
 		this.phoneNumber = phone;
 		this.housingLocation = housing;
@@ -65,6 +69,50 @@ public class Person implements Serializable {
 
 	public String getMiddleName() {
 		return middleName;
+	}
+	
+	public String getRoseID() {
+		return roseID;
+	}
+
+	public Set<PositivePool> getPositivePools() {
+		return positivePools;
+	}
+
+	public void setPositivePools(Set<PositivePool> positivePools) {
+		this.positivePools = positivePools;
+	}
+
+	public void setID(int iD) {
+		ID = iD;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public void setRoseID(String roseID) {
+		this.roseID = roseID;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public void setHousingLocation(HousingLocation housingLocation) {
+		this.housingLocation = housingLocation;
 	}
 
 	public String getPhoneNumber() {

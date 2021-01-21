@@ -12,9 +12,6 @@ public class Student implements Serializable {
 	@Column(name = "ID", nullable = false, columnDefinition = "serial")
 	private int ID;
 
-	@Column(name = "StudentID", nullable = false, unique = true)
-	private String studentID;
-
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "person_id")
 	private Person person;
@@ -28,9 +25,8 @@ public class Student implements Serializable {
 	public Student() {
 	}
 
-	public Student(Person person, String studentID, String greek, ArrayList<String> athletics) {
+	public Student(Person person, String greek, ArrayList<String> athletics) {
 		this.person = person;
-		this.studentID = studentID;
 		this.greekAffiliation = greek;
 		this.athletics = athletics;
 	}
@@ -49,10 +45,6 @@ public class Student implements Serializable {
 
 	public String getGreekAffiliation() {
 		return greekAffiliation;
-	}
-
-	public String getStudentID() {
-		return studentID;
 	}
 
 }
