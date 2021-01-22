@@ -2,14 +2,15 @@ package edu.rosehulman.covidtracer.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.UUID;
 
 @Entity
 public class SystemUser implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID", nullable = false, columnDefinition = "serial")
-	private int ID;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "ID", nullable = false)
+	private Long ID;
 
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "person_id", nullable = false, unique = true)
@@ -39,7 +40,7 @@ public class SystemUser implements Serializable {
 		return person;
 	}
 
-	public int ID() {
+	public Long ID() {
 		return ID;
 	}
 

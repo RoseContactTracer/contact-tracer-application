@@ -11,6 +11,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface SystemUserRepository extends JpaRepository<SystemUser, Integer> {
+public interface SystemUserRepository extends JpaRepository<SystemUser, Long> {
 
 }

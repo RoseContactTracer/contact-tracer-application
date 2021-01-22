@@ -21,7 +21,7 @@ public class PersonController {
     @GetMapping("/people")
     public ResponseEntity<List<Person>> getAllPersons(@RequestParam(defaultValue = "0") Integer pageNum,
                                                       @RequestParam(defaultValue = "10") Integer entriesPerPage,
-                                                      @RequestParam(defaultValue = "id") String sortBy){
+                                                      @RequestParam(defaultValue = "ID") String sortBy){
         List<Person> resultSet = service.getAllPersons(pageNum, entriesPerPage, sortBy);
         return new ResponseEntity<List<Person>>(resultSet, new HttpHeaders(), HttpStatus.OK);
     }

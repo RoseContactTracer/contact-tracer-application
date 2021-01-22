@@ -3,14 +3,15 @@ package edu.rosehulman.covidtracer.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 public class Person implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID", nullable = false, columnDefinition = "serial")
-	private int ID;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "ID", nullable = false)
+	private Long ID;
 
 	@Column(name = "first_name", nullable = false)
 	private String firstName;
@@ -51,7 +52,7 @@ public class Person implements Serializable {
 		this.housingLocation = housing;
 	}
 
-	public int getID() {
+	public Long getID() {
 		return ID;
 	}
 
@@ -83,7 +84,7 @@ public class Person implements Serializable {
 		this.positivePools = positivePools;
 	}
 
-	public void setID(int iD) {
+	public void setID(Long iD) {
 		ID = iD;
 	}
 

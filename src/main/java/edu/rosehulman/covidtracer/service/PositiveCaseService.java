@@ -3,6 +3,8 @@ package edu.rosehulman.covidtracer.service;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,8 +25,8 @@ public class PositiveCaseService {
 	@Autowired
     PositiveCaseRepository repository;
 
-    public List<PositiveCase> getAllPositiveCases(){
-        Pageable pageProperties = PageRequest.of(0, 10, Sort.by("id"));
+    public List<PositiveCase> getAllPositiveCases(Integer pageNum, Integer entriesPerPage, String sortBy){
+        Pageable pageProperties = PageRequest.of(0, 10, Sort.by(sortBy));
         Page<PositiveCase> result = repository.findAll(pageProperties);
         if(result.hasContent()){
             return result.getContent();
@@ -32,8 +34,8 @@ public class PositiveCaseService {
         return new ArrayList<PositiveCase>();
     }
     
-    public int createPositiveCase(Person person, Date testDate, Date symptomaticStartDate, Date quarantineEndDate, boolean needsTransportation) {
-    	PositiveCase newCase = new PositiveCase(person, testDate, symptomaticStartDate, quarantineEndDate, needsTransportation);
+    public Long createPositiveCase(Person person, Date testDate, Date symptomaticStartDate, Date quarantineEndDate, boolean needsTransportation) {
+    	PositiveCase newCase = new PositiveCase(new Random().nextLong(), person, testDate, symptomaticStartDate, quarantineEndDate, needsTransportation);
     	return repository.save(newCase).getID();
     }
 	

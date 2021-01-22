@@ -2,6 +2,7 @@ package edu.rosehulman.covidtracer.model;
 
 import java.io.Serializable;
 import java.util.Set;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,9 +18,9 @@ import javax.persistence.OneToMany;
 public class PossibleSymptom implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID", nullable = false, columnDefinition = "serial")
-	private int ID;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "ID", nullable = false)
+	private Long ID;
 
 	@Column(name = "Name", nullable = false, unique = true)
 	private String name;
@@ -32,7 +33,7 @@ public class PossibleSymptom implements Serializable {
 		this.description = description;
 	}
 
-	public int getID() {
+	public Long getID() {
 		return ID;
 	}
 

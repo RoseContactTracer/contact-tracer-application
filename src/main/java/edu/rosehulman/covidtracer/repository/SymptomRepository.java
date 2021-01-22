@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import edu.rosehulman.covidtracer.model.Symptom;
 
 @Repository
-public interface SymptomRepository extends JpaRepository<Symptom, Integer>{
+public interface SymptomRepository extends JpaRepository<Symptom, Long>{
 
 }

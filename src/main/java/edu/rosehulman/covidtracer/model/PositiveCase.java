@@ -4,14 +4,15 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 public class PositiveCase implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID", nullable = false, columnDefinition = "serial")
-	private int ID;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "ID", nullable = false)
+	private Long ID;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "person_id")
@@ -40,7 +41,8 @@ public class PositiveCase implements Serializable {
 	public PositiveCase() {
 	}
 
-	public PositiveCase(Person person, Date testDate, Date symptomaticStartDate, Date quarantineEndDate, boolean needsTransportation) {
+	public PositiveCase(Long ID, Person person, Date testDate, Date symptomaticStartDate, Date quarantineEndDate, boolean needsTransportation) {
+		this.ID = ID;
 		this.person = person;
 		this.testDate = testDate;
 		this.symptomaticStartDate = symptomaticStartDate;
@@ -56,7 +58,7 @@ public class PositiveCase implements Serializable {
 		return symptomaticStartDate;
 	}
 
-	public int getID() {
+	public Long getID() {
 		return ID;
 	}
 
@@ -88,7 +90,7 @@ public class PositiveCase implements Serializable {
 		return quarantineLocation;
 	}
 
-	public void setID(int iD) {
+	public void setID(Long iD) {
 		ID = iD;
 	}
 
