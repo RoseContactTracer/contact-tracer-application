@@ -31,6 +31,9 @@ public class PositiveCaseController {
 	@Autowired
 	private PositiveCaseRepository repository;
 	
+	@Autowired
+	private PersonRepository personRepo;
+	
 	@GetMapping("/positive-case")
     public ResponseEntity<List<PositiveCase>> getAllPositiveCases(@RequestParam(defaultValue = "0") Integer pageNum,
                                                       @RequestParam(defaultValue = "10") Integer entriesPerPage,
@@ -48,10 +51,14 @@ public class PositiveCaseController {
 		return positiveCase.get();
 	}
 	
-	@PostMapping("/positive-case")
+	@PostMapping("/people/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public PositiveCase createPositiveCase(@RequestBody PositiveCase positiveCase) {
-		return repository.save(positiveCase);
+	public PositiveCase createPositiveCase(@PathVariable (value = "id") Long personID, @RequestBody PositiveCase positiveCase) throws NotFoundException {
+		return personRepo.findById(personID).map(person -> {
+			positiveCase.setPerson(person);
+			return repository.save(positiveCase);
+		}).orElseThrow(() -> new NotFoundException("PersonID" + personID + " not found"));
+
 	}
 	
 }
