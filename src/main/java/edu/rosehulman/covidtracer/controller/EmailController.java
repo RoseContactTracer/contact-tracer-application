@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -19,8 +20,7 @@ public class EmailController {
     EmailService service;
 
     @GetMapping("/email")
-    public ResponseEntity sendEmail(@RequestParam(defaultValue = "0") Integer pageNum, @RequestParam(defaultValue = "10") Integer entriesPerPage,
-                                                      @RequestParam(defaultValue = "id") String sortBy){
+    public ResponseEntity sendEmail() throws IOException {
         service.sendTestEmail();
         return new ResponseEntity(new HttpHeaders(), HttpStatus.OK);
     }
