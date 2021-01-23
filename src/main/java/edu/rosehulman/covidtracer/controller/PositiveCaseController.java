@@ -28,68 +28,72 @@ import javassist.NotFoundException;
 
 @RestController
 public class PositiveCaseController {
-	
+
 	@Autowired
 	private PositiveCaseService service;
-	
+
 	@Autowired
 	private PositiveCaseRepository repository;
-	
+
 	@Autowired
 	private PersonRepository personRepo;
-	
+
 	@Autowired
 	private ContactTracerRepository contactTracerRepo;
-	
+
 	@GetMapping("/positive-case")
-    public ResponseEntity<List<PositiveCase>> getAllPositiveCases(@RequestParam(defaultValue = "0") Integer pageNum,
-                                                      @RequestParam(defaultValue = "10") Integer entriesPerPage,
-                                                      @RequestParam(defaultValue = "ID") String sortBy){
-        List<PositiveCase> resultSet = service.getAllPositiveCases(pageNum, entriesPerPage, sortBy);
-        return new ResponseEntity<List<PositiveCase>>(resultSet, new HttpHeaders(), HttpStatus.OK);
-    }
-	
+	public ResponseEntity<List<PositiveCase>> getAllPositiveCases(@RequestParam(defaultValue = "0") Integer pageNum,
+			@RequestParam(defaultValue = "10") Integer entriesPerPage,
+			@RequestParam(defaultValue = "ID") String sortBy) {
+		List<PositiveCase> resultSet = service.getAllPositiveCases(pageNum, entriesPerPage, sortBy);
+		return new ResponseEntity<List<PositiveCase>>(resultSet, new HttpHeaders(), HttpStatus.OK);
+	}
+
 	@GetMapping("/positive-case/{id}")
 	public PositiveCase retrievePositiveCase(@PathVariable Long id) throws NotFoundException {
 		Optional<PositiveCase> positiveCase = repository.findById(id);
-		
-		if(!positiveCase.isPresent()) throw new NotFoundException("id-" + id);
-		
+
+		if (!positiveCase.isPresent())
+			throw new NotFoundException("id-" + id);
+
 		return positiveCase.get();
 	}
-	
+
 	@PostMapping("/people/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public PositiveCase createPositiveCaseOnPersonProfile(@PathVariable (value = "id") Long personID, @RequestBody PositiveCase positiveCase) throws NotFoundException {
+	public PositiveCase createPositiveCaseOnPersonProfile(@PathVariable(value = "id") Long personID,
+			@RequestBody PositiveCase positiveCase) throws NotFoundException {
 		return personRepo.findById(personID).map(person -> {
 			positiveCase.setPerson(person);
 			return repository.save(positiveCase);
 		}).orElseThrow(() -> new NotFoundException("PersonID" + personID + " not found"));
 
 	}
-	
+
 	@PostMapping("/people")
 	@ResponseStatus(HttpStatus.CREATED)
-	public PositiveCase createPositiveCaseOnPeopleList(@RequestParam (name = "id") Long personID, @RequestBody PositiveCase positiveCase) throws NotFoundException {
+	public PositiveCase createPositiveCaseOnPeopleList(@RequestParam(name = "id") Long personID,
+			@RequestBody PositiveCase positiveCase) throws NotFoundException {
 		return personRepo.findById(personID).map(person -> {
 			positiveCase.setPerson(person);
 			return repository.save(positiveCase);
 		}).orElseThrow(() -> new NotFoundException("PersonID" + personID + " not found"));
 
 	}
-	
-	  @PutMapping("/positive-case/{id}")
-	  public ResponseEntity<PositiveCase> updateContactTracer(@PathVariable("id") long id, @RequestParam(name = "contactTracerID") Long contactTracerID) {
-	    Optional<PositiveCase> existingCase = repository.findById(id);
-	    Optional<ContactTracer> tracer = contactTracerRepo.findById(contactTracerID);
 
-	    if (existingCase.isPresent() && tracer.isPresent()) {
-	      PositiveCase _case = existingCase.get();
-	      _case.setContactTracer(tracer.get());
-	      return new ResponseEntity<>(repository.save(_case), HttpStatus.OK);
-	    } else {
-	      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-	    }
-	  }
-	
+	@PutMapping("/positive-case/{id}")
+	public ResponseEntity<PositiveCase> updateContactTracer(@PathVariable("id") long id,
+			@RequestParam(name = "contactTracerID") Long contactTracerID) {
+		Optional<PositiveCase> existingCase = repository.findById(id);
+		Optional<ContactTracer> tracer = contactTracerRepo.findById(contactTracerID);
+
+		if (existingCase.isPresent() && tracer.isPresent()) {
+			PositiveCase _case = existingCase.get();
+			_case.setContactTracer(tracer.get());
+			return new ResponseEntity<>(repository.save(_case), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+
 }
