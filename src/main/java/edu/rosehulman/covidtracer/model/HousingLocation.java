@@ -28,6 +28,11 @@ public class HousingLocation implements Serializable {
 	public HousingLocation(String address) {
 		this.address = address;
 	}
+	
+	public HousingLocation(Long ID, String address) {
+		this.ID = ID;
+		this.address = address;
+	}
 
 	public Long getID() {
 		return ID;
