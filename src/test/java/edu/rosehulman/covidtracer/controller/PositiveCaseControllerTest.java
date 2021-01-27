@@ -3,14 +3,13 @@ package edu.rosehulman.covidtracer.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.assertj.core.error.ShouldHaveSameSizeAs;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.internal.matchers.InstanceOf;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -43,7 +42,7 @@ public class PositiveCaseControllerTest {
 		cases.add(new PositiveCase());
 		cases.add(new PositiveCase());
 		
-		Mockito.when(service.getAllPositiveCases(Mockito.anyInt(), Mockito.anyInt(), Mockito.anyString())).thenReturn((List) cases);
+		Mockito.when(service.getAllPositiveCases(Mockito.anyInt(), Mockito.anyInt(), Mockito.anyString())).thenReturn((List<PositiveCase>) cases);
 		
 		mockMvc.perform(MockMvcRequestBuilders.get("/positive-case"))
 			.andExpect(MockMvcResultMatchers.status().isOk())
