@@ -64,11 +64,14 @@ public class PositiveCaseController {
 
 	@PostMapping("/userlist/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public PositiveCase createPositiveCaseOnPersonProfile(@PathVariable(value = "id") Long personID,
+	public ResponseEntity<List<Person>> createPositiveCaseOnPersonProfile(@PathVariable(value = "id") Long personID,
 			@RequestBody PositiveCase positiveCase) throws NotFoundException {
 		return personRepo.findById(personID).map(person -> {
 			positiveCase.setPerson(person);
-			return repository.save(positiveCase);
+			repository.save(positiveCase);
+			List<Person> resultSet = new ArrayList<Person>();
+			resultSet.add(person);
+			return new ResponseEntity<List<Person>>(resultSet, new HttpHeaders(), HttpStatus.OK);
 		}).orElseThrow(() -> new NotFoundException("PersonID" + personID + " not found"));
 
 	}
