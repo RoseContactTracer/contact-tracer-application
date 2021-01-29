@@ -34,6 +34,8 @@ public class QuarantineLocation implements Serializable {
 
 	@Column(name = "isClean", nullable = false)
 	private boolean isClean = true;
+	
+	public QuarantineLocation() {}
 
 	public QuarantineLocation(String address, String roomIdentifier, boolean isFull, boolean isClean) {
 		this.address = address;
