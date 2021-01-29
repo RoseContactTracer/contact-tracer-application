@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,6 +27,7 @@ import edu.rosehulman.covidtracer.repository.PositiveCaseRepository;
 import edu.rosehulman.covidtracer.service.PositiveCaseService;
 import javassist.NotFoundException;
 
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 public class PositiveCaseController {
 
@@ -59,7 +61,7 @@ public class PositiveCaseController {
 		return positiveCase.get();
 	}
 
-	@PostMapping("/people/{id}")
+	@PostMapping("/userlist/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
 	public PositiveCase createPositiveCaseOnPersonProfile(@PathVariable(value = "id") Long personID,
 			@RequestBody PositiveCase positiveCase) throws NotFoundException {
@@ -70,7 +72,7 @@ public class PositiveCaseController {
 
 	}
 
-	@PostMapping("/people")
+	@PostMapping("/userlist")
 	@ResponseStatus(HttpStatus.CREATED)
 	public PositiveCase createPositiveCaseOnPeopleList(@RequestParam(name = "id") Long personID,
 			@RequestBody PositiveCase positiveCase) throws NotFoundException {

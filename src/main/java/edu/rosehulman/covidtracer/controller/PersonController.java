@@ -10,14 +10,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 public class PersonController {
 
@@ -27,7 +31,7 @@ public class PersonController {
     @Autowired
     PersonRepository repository;
 
-    @GetMapping("/people")
+    @GetMapping(path = "/userlist")
     public ResponseEntity<List<Person>> getAllPersons(@RequestParam(defaultValue = "0") Integer pageNum,
                                                       @RequestParam(defaultValue = "10") Integer entriesPerPage,
                                                       @RequestParam(defaultValue = "ID") String sortBy){
@@ -35,13 +39,16 @@ public class PersonController {
         return new ResponseEntity<List<Person>>(resultSet, new HttpHeaders(), HttpStatus.OK);
     }
     
-    @GetMapping("/people/{id}")
-	public Person retrievePositiveCase(@PathVariable Long id) throws NotFoundException {
+    @GetMapping(path = "/userlist/{id}")
+	public ResponseEntity<List<Person>> retrievePositiveCase(@PathVariable Long id) throws NotFoundException {
+    	List<Person> resultSet = new ArrayList<Person>();
 		Optional<Person> person = repository.findById(id);
 		
 		if(!person.isPresent()) throw new NotFoundException("id-" + id);
 		
-		return person.get();
+		resultSet.add(person.get());
+		
+		return new ResponseEntity<List<Person>>(resultSet, new HttpHeaders(), HttpStatus.OK);
 	}
 
 }
