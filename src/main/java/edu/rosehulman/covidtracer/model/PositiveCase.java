@@ -41,12 +41,12 @@ public class PositiveCase implements Serializable {
 	public PositiveCase() {
 	}
 
-	public PositiveCase(Long ID, Person person, Date testAdministrationDate, Date startOfSymptoms, Date endOfQuarentineDate, boolean needsTransportation) {
+	public PositiveCase(Long ID, Person person, Date testDate, Date symptomaticStartDate, Date endOfQuarentineDate, boolean needsTransportation) {
 		this.ID = ID;
 		this.person = person;
-		this.testDate = testAdministrationDate;
-		this.symptomaticStartDate = startOfSymptoms;
-		this.quarantineEndDate = endOfQuarentineDate;
+		this.testDate = testDate;
+		this.symptomaticStartDate = symptomaticStartDate;
+		this.quarantineEndDate = quarantineEndDate;
 		this.needsTransportation = needsTransportation;
 	}
 
