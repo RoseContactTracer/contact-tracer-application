@@ -23,11 +23,11 @@ public class PersonService {
     private void showRepositoryInfo() {
         System.out.println("************PersonRepository autowired************  \n ->" + repository.getClass().getCanonicalName());
     }
-    public List<Person> getAllPersons(Integer pageNum, Integer entriesPerPage, String sortBy){
-        Pageable pageProperties = PageRequest.of(pageNum, entriesPerPage, Sort.by(sortBy));
-        Page<Person> result = repository.findAll(pageProperties);
-        if(result.hasContent()){
-            return result.getContent();
+    
+    public List<Person> getAllPersons(){
+        List<Person> result = repository.findAll();
+        if(!result.isEmpty()){
+            return result;
         }
         return new ArrayList<Person>();
     }

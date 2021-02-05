@@ -11,6 +11,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface PositiveCaseRepository extends JpaRepository<PositiveCase, Integer> {
+public interface PositiveCaseRepository extends JpaRepository<PositiveCase, Long> {
 
 }

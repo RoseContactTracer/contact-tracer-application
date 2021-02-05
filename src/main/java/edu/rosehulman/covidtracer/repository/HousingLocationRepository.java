@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import edu.rosehulman.covidtracer.model.HousingLocation;
 
 @Repository
-public interface HousingLocationRepository extends JpaRepository<HousingLocation, Integer>{
+public interface HousingLocationRepository extends JpaRepository<HousingLocation, Long>{
 
 }

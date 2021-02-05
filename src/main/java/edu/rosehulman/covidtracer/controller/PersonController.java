@@ -1,29 +1,52 @@
 package edu.rosehulman.covidtracer.controller;
 
 import edu.rosehulman.covidtracer.model.Person;
+import edu.rosehulman.covidtracer.model.PositiveCase;
+import edu.rosehulman.covidtracer.repository.PersonRepository;
 import edu.rosehulman.covidtracer.service.PersonService;
+import javassist.NotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 public class PersonController {
 
     @Autowired
     PersonService service;
+    
+    @Autowired
+    PersonRepository repository;
 
-    @GetMapping("/people")
-    public ResponseEntity<List<Person>> getAllPersons(@RequestParam(defaultValue = "0") Integer pageNum,
-                                                      @RequestParam(defaultValue = "10") Integer entriesPerPage,
-                                                      @RequestParam(defaultValue = "id") String sortBy){
-        List<Person> resultSet = service.getAllPersons(pageNum, entriesPerPage, sortBy);
+    @GetMapping(path = "/userlist")
+    public ResponseEntity<List<Person>> getAllPersons(){
+        List<Person> resultSet = service.getAllPersons();
         return new ResponseEntity<List<Person>>(resultSet, new HttpHeaders(), HttpStatus.OK);
     }
+    
+    @GetMapping(path = "/userlist/{id}")
+	public ResponseEntity<List<Person>> retrievePositiveCase(@PathVariable Long id) throws NotFoundException {
+    	List<Person> resultSet = new ArrayList<Person>();
+		Optional<Person> person = repository.findById(id);
+		
+		if(!person.isPresent()) throw new NotFoundException("id-" + id);
+		
+		resultSet.add(person.get());
+		
+		return new ResponseEntity<List<Person>>(resultSet, new HttpHeaders(), HttpStatus.OK);
+	}
 
 }

@@ -3,6 +3,7 @@ package edu.rosehulman.covidtracer.model;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.Set;
+import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -21,9 +22,9 @@ import javax.persistence.OneToOne;
 public class CloseContact implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID", nullable = false, columnDefinition = "serial")
-	private int ID;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "ID", nullable = false)
+	private Long ID;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "person_id")
@@ -57,7 +58,7 @@ public class CloseContact implements Serializable {
 		this.positiveCase = positiveCase;
 	}
 
-	public int getID() {
+	public Long getID() {
 		return ID;
 	}
 
