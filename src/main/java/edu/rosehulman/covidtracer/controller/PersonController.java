@@ -32,10 +32,8 @@ public class PersonController {
     PersonRepository repository;
 
     @GetMapping(path = "/userlist")
-    public ResponseEntity<List<Person>> getAllPersons(@RequestParam(defaultValue = "0") Integer pageNum,
-                                                      @RequestParam(defaultValue = "10") Integer entriesPerPage,
-                                                      @RequestParam(defaultValue = "ID") String sortBy){
-        List<Person> resultSet = service.getAllPersons(pageNum, entriesPerPage, sortBy);
+    public ResponseEntity<List<Person>> getAllPersons(){
+        List<Person> resultSet = service.getAllPersons();
         return new ResponseEntity<List<Person>>(resultSet, new HttpHeaders(), HttpStatus.OK);
     }
     
