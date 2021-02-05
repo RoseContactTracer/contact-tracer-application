@@ -25,11 +25,10 @@ public class PositiveCaseService {
 	@Autowired
     PositiveCaseRepository repository;
 
-    public List<PositiveCase> getAllPositiveCases(Integer pageNum, Integer entriesPerPage, String sortBy){
-        Pageable pageProperties = PageRequest.of(0, 10, Sort.by(sortBy));
-        Page<PositiveCase> result = repository.findAll(pageProperties);
-        if(result.hasContent()){
-            return result.getContent();
+    public List<PositiveCase> getAllPositiveCases(){
+        List<PositiveCase> result = repository.findAll();
+        if(!result.isEmpty()){
+            return result;
         }
         return new ArrayList<PositiveCase>();
     }

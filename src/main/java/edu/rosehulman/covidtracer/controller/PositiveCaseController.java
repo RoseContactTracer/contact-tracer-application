@@ -45,10 +45,8 @@ public class PositiveCaseController {
 	private ContactTracerRepository contactTracerRepo;
 
 	@GetMapping("/positive-case")
-	public ResponseEntity<List<PositiveCase>> getAllPositiveCases(@RequestParam(defaultValue = "0") Integer pageNum,
-			@RequestParam(defaultValue = "10") Integer entriesPerPage,
-			@RequestParam(defaultValue = "ID") String sortBy) {
-		List<PositiveCase> resultSet = service.getAllPositiveCases(pageNum, entriesPerPage, sortBy);
+	public ResponseEntity<List<PositiveCase>> getAllPositiveCases() {
+		List<PositiveCase> resultSet = service.getAllPositiveCases();
 		return new ResponseEntity<List<PositiveCase>>(resultSet, new HttpHeaders(), HttpStatus.OK);
 	}
 
