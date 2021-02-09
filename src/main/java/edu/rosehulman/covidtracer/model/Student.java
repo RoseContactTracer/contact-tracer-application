@@ -3,17 +3,15 @@ package edu.rosehulman.covidtracer.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.UUID;
 
 @Entity
 public class Student implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID", nullable = false, columnDefinition = "serial")
-	private int ID;
-
-	@Column(name = "StudentID", nullable = false, unique = true)
-	private String studentID;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "ID", nullable = false)
+	private Long ID;
 
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "person_id")
@@ -28,14 +26,13 @@ public class Student implements Serializable {
 	public Student() {
 	}
 
-	public Student(Person person, String studentID, String greek, ArrayList<String> athletics) {
+	public Student(Person person, String greek, ArrayList<String> athletics) {
 		this.person = person;
-		this.studentID = studentID;
 		this.greekAffiliation = greek;
 		this.athletics = athletics;
 	}
 
-	public int getID() {
+	public Long getID() {
 		return ID;
 	}
 
@@ -49,10 +46,6 @@ public class Student implements Serializable {
 
 	public String getGreekAffiliation() {
 		return greekAffiliation;
-	}
-
-	public String getStudentID() {
-		return studentID;
 	}
 
 }

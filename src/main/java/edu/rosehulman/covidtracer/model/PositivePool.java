@@ -3,6 +3,7 @@ package edu.rosehulman.covidtracer.model;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.Set;
+import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -20,9 +21,9 @@ import javax.persistence.ManyToOne;
 public class PositivePool implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID", nullable = false)
-	private int ID;
+	private Long ID;
 	
 	@ManyToMany(mappedBy = "positivePools", cascade = CascadeType.ALL)
 	@Column(name = "person", nullable = false)
@@ -34,13 +35,13 @@ public class PositivePool implements Serializable {
 	public PositivePool() {
 	}
 
-	public PositivePool(int ID, Person person, Date date) {
+	public PositivePool(Long ID, Person person, Date date) {
 		this.ID = ID;
 		this.people.add(person);
 		this.date = date;
 	}
 
-	public int getID() {
+	public Long getID() {
 		return ID;
 	}
 
