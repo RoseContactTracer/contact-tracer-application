@@ -11,8 +11,8 @@ public class EmailService {
     public void sendTestEmail() throws IOException {
     Email from = new Email("rhitcovidtracer@gmail.com");
     String subject = "Sending with SendGrid is Fun";
-    Email to = new Email("corialmt@rose-hulman.edu");
-    Content content = new Content("text/plain", "and easy to do anywhere, even with Java");
+    Email to = new Email("maura.coriale@gmail.com");
+    Content content = new Content("text/html", "test");
     Mail mail = new Mail(from, subject, to, content);
         mail.setTemplateId("d-8df5b581b0374da4a401390264d80200");
 

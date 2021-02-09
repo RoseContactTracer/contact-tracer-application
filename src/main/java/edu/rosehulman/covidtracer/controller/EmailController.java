@@ -21,10 +21,10 @@ public class EmailController {
     EmailService service;
 
     @GetMapping("/email")
-    public ResponseEntity sendEmail() throws IOException {
+    public ResponseEntity<String> sendEmail() throws IOException {
 
         service.sendTestEmail();
-        return new ResponseEntity(new HttpHeaders(), HttpStatus.OK);
+        return new ResponseEntity("Email has been sent", new HttpHeaders(), HttpStatus.OK);
     }
 
 }
