@@ -24,7 +24,7 @@ public class PersonService {
         System.out.println("************PersonRepository autowired************  \n ->" + repository.getClass().getCanonicalName());
     }
 
-    public List<Person> getAllPersons(Integer pageNum, Integer entriesPerPage, String sortBy){
+    public List<Person> getAllPersons(){
         return repository.findAll();
     }
 
