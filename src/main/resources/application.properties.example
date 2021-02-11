@@ -1,9 +1,10 @@
-
 spring.jpa.database=POSTGRESQL
 spring.datasource.platform=postgres
 spring.datasource.url=jdbc:postgresql://localhost:5432/CovidTracer
 spring.datasource.username=postgres
-spring.datasource.password=Serenity99!
+spring.datasource.password=YOUR-PASSWORD-HERE
 spring.jpa.show-sql=true
 spring.jpa.generate-ddl=true
 server.port=42069
+sendgrid.api-key=KEY-GOES-HERE
+email.template.basic=

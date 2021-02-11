@@ -1,12 +1,19 @@
 package edu.rosehulman.covidtracer.service;
 
 import com.sendgrid.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
 @Service
 public class EmailService {
+
+    @Value("${sendgrid.api-key}")
+    String apiKey;
+
+    @Value("${email.template.basic}")
+    String basicTemplate;
 
     public void sendEmail(String from, String subject, String to, String templateId) throws IOException{
         Email fromAddress = new Email(from);
@@ -15,7 +22,7 @@ public class EmailService {
         Mail mail = new Mail(fromAddress, subject, toAddress, content);
         mail.setTemplateId(templateId);
 
-        SendGrid sg = new SendGrid("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");
+        SendGrid sg = new SendGrid(apiKey);
         Request request = new Request();
         try {
             request.setMethod(Method.POST);
@@ -33,28 +40,11 @@ public class EmailService {
     }
 
     public void sendTestEmail() throws IOException {
-    Email from = new Email("rhitcovidtracer@gmail.com");
+    String from = "rhitcovidtracer@gmail.com";
     String subject = "Sending with SendGrid is Fun";
-    Email to = new Email("maura.coriale@gmail.com");
-    Content content = new Content("text/html", "test");
-    Mail mail = new Mail(from, subject, to, content);
-        mail.setTemplateId("d-8df5b581b0374da4a401390264d80200");
+    String to = "maura.coriale@gmail.com";
+    sendEmail(from, subject, to, basicTemplate);
 
-    SendGrid sg = new SendGrid("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");
-    Request request = new Request();
-        try {
-            request.setMethod(Method.POST);
-            request.setEndpoint("mail/send");
-            request.setBody(mail.build());
-            Response response = sg.api(request);
-            System.out.println(response.getStatusCode());
-            System.out.println(response.getBody());
-            System.out.println(response.getHeaders());
-            System.out.println("We did it y'all");
-        }
-        catch (IOException ex) {
-            throw ex;
-        }
     }
 
     public void alertAllOfNewCase(String caseId) {
