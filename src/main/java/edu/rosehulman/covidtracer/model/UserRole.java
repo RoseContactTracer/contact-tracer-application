@@ -7,7 +7,7 @@ import java.util.UUID;
 import javax.persistence.*;
 
 @Entity
-public class Role implements Serializable {
+public class UserRole implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,9 +17,9 @@ public class Role implements Serializable {
 	@Column(name = "Role", nullable = false, unique = true)
 	private ROLE role;
 
-	public Role() {}
+	public UserRole() {}
 
-	public Role(String role) {
+	public UserRole(String role) {
 		this.role = ROLE.roleFromString(role);
 	}
 
