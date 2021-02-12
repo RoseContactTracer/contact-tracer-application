@@ -34,7 +34,7 @@ public class Role implements Serializable {
 }
 
 enum ROLE {
-	PERSON, HEALTH_SERVICES, CONTACT_TRACER, HEAD_CONTACT_TRACER, STUDENT_AFFAIRS;
+	PERSON, HEALTH_SERVICES, CONTACT_TRACER, HEAD_CONTACT_TRACER, STUDENT_AFFAIRS, SYSTEM_ADMIN;
 
 	public String toString(){
 		switch(this){
@@ -48,6 +48,8 @@ enum ROLE {
 				return "Head Contact Tracer";
 			case STUDENT_AFFAIRS:
 				return "Student Affairs";
+			case SYSTEM_ADMIN:
+				return "System Admin";
 			default:
 				return "Role Unspecified";
 		}
@@ -63,6 +65,8 @@ enum ROLE {
 				return ROLE.HEAD_CONTACT_TRACER;
 			case "student affairs":
 				return ROLE.STUDENT_AFFAIRS;
+			case "system admin":
+				return ROLE.SYSTEM_ADMIN;
 			default:
 				return ROLE.PERSON;
 		}
