@@ -44,12 +44,13 @@ public class EmailService {
     String subject = "Sending with SendGrid is Fun";
     String to = "maura.coriale@gmail.com";
     sendEmail(from, subject, to, basicTemplate);
-
     }
 
     public void alertAllOfNewCase(String caseId) {
-        //need to send emails to everyone who has a role
+        //need to send emails to everyone who has particular role (Head Contact Tracer, Student Affairs)
         //can start by grabbing all w/ role from database
+
+
     }
 
     public void alertTracerOfNewCase(String caseId) {
