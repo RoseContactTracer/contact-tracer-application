@@ -38,11 +38,15 @@ public class Person implements Serializable {
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "person_to_positive_pools", joinColumns = @JoinColumn(name = "person_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "positive_pool_id", referencedColumnName = "ID"))
 	private Set<PositivePool> positivePools;
+	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "role_id", nullable = false)
+	private UserRole role;
 
 	public Person() {
 	}
 
-	public Person(String firstName, String middleName, String lastName, String roseID, String email, String phone, HousingLocation housing) {
+	public Person(String firstName, String middleName, String lastName, String roseID, String email, String phone, HousingLocation housing, UserRole role) {
 		this.firstName = firstName;
 		this.middleName = middleName;
 		this.lastName = lastName;
@@ -50,6 +54,7 @@ public class Person implements Serializable {
 		this.email = email;
 		this.phoneNumber = phone;
 		this.housingLocation = housing;
+		this.role = role;
 	}
 	
 	public Person(Long id, String firstName, String middleName, String lastName, String roseID, String email, String phone, HousingLocation housing) {
@@ -85,6 +90,10 @@ public class Person implements Serializable {
 	
 	public String getRoseID() {
 		return roseID;
+	}
+	
+	public UserRole getRole() {
+		return this.role;
 	}
 
 	public Set<PositivePool> getPositivePools() {
