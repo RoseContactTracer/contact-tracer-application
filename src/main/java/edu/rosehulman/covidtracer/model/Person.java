@@ -82,6 +82,10 @@ public class Person implements Serializable {
 	public String getMiddleName() {
 		return middleName;
 	}
+
+	public String getFullName(){
+		return getFirstName() + " " + getMiddleName() + " " + getLastName();
+	}
 	
 	public String getRoseID() {
 		return roseID;

@@ -6,33 +6,6 @@ import java.util.UUID;
 
 import javax.persistence.*;
 
-@Entity
-public class Role implements Serializable {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "ID", nullable = false)
-	private Long ID;
-
-	@Column(name = "Role", nullable = false, unique = true)
-	private ROLE role;
-
-	public Role() {}
-
-	public Role(String role) {
-		this.role = ROLE.roleFromString(role);
-	}
-
-	public Long getID() {
-		return ID;
-	}
-
-	public String getRole() {
-		return role.toString();
-	}
-
-}
-
 enum ROLE {
 	PERSON, HEALTH_SERVICES, CONTACT_TRACER, HEAD_CONTACT_TRACER, STUDENT_AFFAIRS;
 

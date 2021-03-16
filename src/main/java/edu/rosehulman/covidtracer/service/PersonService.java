@@ -28,4 +28,15 @@ public class PersonService {
         return repository.findAll();
     }
 
+    public String getNameFromEmail(String email){
+        List<Person> people = repository.findByEmail(email);
+        System.out.println("We're doing this");
+        if(people.size() > 1 || people.size() == 0){
+            System.out.println("Couldnt find name in database");
+            return "Undefined";
+        }
+        System.out.println(people.toString());
+        return people.get(0).getFullName();
+    }
+
 }

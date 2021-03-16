@@ -1,6 +1,12 @@
 package edu.rosehulman.covidtracer.service;
 
 import com.sendgrid.*;
+import com.sendgrid.helpers.mail.Mail;
+import com.sendgrid.helpers.mail.objects.Content;
+import com.sendgrid.helpers.mail.objects.Email;
+import com.sendgrid.helpers.mail.objects.Personalization;
+import edu.rosehulman.covidtracer.repository.PersonRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -8,6 +14,9 @@ import java.io.IOException;
 
 @Service
 public class EmailService {
+
+    @Autowired
+    PersonService personService;
 
     @Value("${sendgrid.api-key}")
     String apiKey;
@@ -21,6 +30,14 @@ public class EmailService {
         Content content = new Content("text/html", "Covid Tracer Stuff");
         Mail mail = new Mail(fromAddress, subject, toAddress, content);
         mail.setTemplateId(templateId);
+        Personalization p = new Personalization();
+        String toName = personService.getNameFromEmail(to);
+        System.out.println(toName);
+        p.addDynamicTemplateData("first_name", "Maura Coriale");
+        //p.addSubstitution("firstName", toName);
+        //p.addSubstitution("firstName", toName);
+        p.addTo(toAddress);
+        mail.personalization.add(p);
 
         SendGrid sg = new SendGrid(apiKey);
         Request request = new Request();
@@ -28,6 +45,7 @@ public class EmailService {
             request.setMethod(Method.POST);
             request.setEndpoint("mail/send");
             request.setBody(mail.build());
+            System.out.println(request.getBody());
             Response response = sg.api(request);
             System.out.println(response.getStatusCode());
             System.out.println(response.getBody());
@@ -40,10 +58,10 @@ public class EmailService {
     }
 
     public void sendTestEmail() throws IOException {
-    String from = "rhitcovidtracer@gmail.com";
-    String subject = "Sending with SendGrid is Fun";
-    String to = "maura.coriale@gmail.com";
-    sendEmail(from, subject, to, basicTemplate);
+        String from = "rhitcovidtracer@gmail.com";
+        String subject = "Sending with SendGrid is Fun";
+        String to = "maura.coriale@gmail.com";
+        sendEmail(from, subject, to, basicTemplate);
     }
 
     public void alertAllOfNewCase(String caseId) {
