@@ -32,10 +32,7 @@ public class EmailService {
         mail.setTemplateId(templateId);
         Personalization p = new Personalization();
         String toName = personService.getNameFromEmail(to);
-        System.out.println(toName);
-        p.addDynamicTemplateData("first_name", "Maura Coriale");
-        //p.addSubstitution("firstName", toName);
-        //p.addSubstitution("firstName", toName);
+        p.addDynamicTemplateData("first_name", toName);
         p.addTo(toAddress);
         mail.personalization.add(p);
 
@@ -45,12 +42,7 @@ public class EmailService {
             request.setMethod(Method.POST);
             request.setEndpoint("mail/send");
             request.setBody(mail.build());
-            System.out.println(request.getBody());
             Response response = sg.api(request);
-            System.out.println(response.getStatusCode());
-            System.out.println(response.getBody());
-            System.out.println(response.getHeaders());
-            System.out.println("Email sent: From: " + from + ", To: " + to + ", Reason: " + subject);
         }
         catch (IOException ex) {
             throw ex;
