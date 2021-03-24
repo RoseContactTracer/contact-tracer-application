@@ -24,7 +24,7 @@ public class EmailService {
     @Value("${email.template.basic}")
     String basicTemplate;
 
-    public void sendEmail(String from, String subject, String to, String templateId) throws IOException{
+    public Response sendEmail(String from, String subject, String to, String templateId) throws IOException{
         Email fromAddress = new Email(from);
         Email toAddress = new Email(to);
         Content content = new Content("text/html", "Covid Tracer Stuff");
@@ -42,18 +42,18 @@ public class EmailService {
             request.setMethod(Method.POST);
             request.setEndpoint("mail/send");
             request.setBody(mail.build());
-            Response response = sg.api(request);
+            return sg.api(request);
         }
         catch (IOException ex) {
             throw ex;
         }
     }
 
-    public void sendTestEmail() throws IOException {
+    public Response sendTestEmail() throws IOException {
         String from = "rhitcovidtracer@gmail.com";
         String subject = "Sending with SendGrid is Fun";
         String to = "maura.coriale@gmail.com";
-        sendEmail(from, subject, to, basicTemplate);
+        return sendEmail(from, subject, to, basicTemplate);
     }
 
     public void alertAllOfNewCase(String caseId) {
