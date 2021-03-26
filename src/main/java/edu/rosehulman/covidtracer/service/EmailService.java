@@ -5,6 +5,7 @@ import com.sendgrid.helpers.mail.Mail;
 import com.sendgrid.helpers.mail.objects.Content;
 import com.sendgrid.helpers.mail.objects.Email;
 import com.sendgrid.helpers.mail.objects.Personalization;
+import edu.rosehulman.covidtracer.model.Person;
 import edu.rosehulman.covidtracer.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,6 +16,8 @@ import java.io.IOException;
 @Service
 public class EmailService {
 
+    public static final String SERVICE_EMAIL = "rhitcovidtracer@gmail.com";
+
     @Autowired
     PersonService personService;
 
@@ -22,7 +25,38 @@ public class EmailService {
     String apiKey;
 
     @Value("${email.template.basic}")
-    String basicTemplate;
+    public String basicTemplate;
+
+    public Response sendEmail(Person recipient, String subject, String templateId) throws IOException {
+        Email fromAddress = new Email(SERVICE_EMAIL);
+        Email toAddress = new Email(recipient.getEmail());
+        Content content = new Content("text/html", "Covid Tracer Official Email");
+        Mail mail = new Mail(fromAddress, subject, toAddress, content);
+        mail.setTemplateId(templateId);
+        Personalization p = new Personalization();
+        String toName = recipient.getFullName();
+        p.addDynamicTemplateData("first_name", toName);
+        p.addTo(toAddress);
+        mail.personalization.add(p);
+
+        SendGrid sg = new SendGrid(apiKey);
+        Request request = new Request();
+        try {
+            request.setMethod(Method.POST);
+            request.setEndpoint("mail/send");
+            request.setBody(mail.build());
+            return sg.api(request);
+        }
+        catch (IOException ex) {
+            throw ex;
+        }
+
+    }
+
+    public String getBasicTemplate(){
+        return this.basicTemplate;
+    }
+
 
     public Response sendEmail(String from, String subject, String to, String templateId) throws IOException{
         Email fromAddress = new Email(from);
