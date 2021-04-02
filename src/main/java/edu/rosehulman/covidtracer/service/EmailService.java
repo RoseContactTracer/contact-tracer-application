@@ -45,7 +45,9 @@ public class EmailService {
             request.setMethod(Method.POST);
             request.setEndpoint("mail/send");
             request.setBody(mail.build());
-            return sg.api(request);
+            Response r = sg.api(request);
+            System.out.println("Response: " + r.getStatusCode() + " " + r.getBody());
+            return r;
         }
         catch (IOException ex) {
             throw ex;
@@ -76,7 +78,9 @@ public class EmailService {
             request.setMethod(Method.POST);
             request.setEndpoint("mail/send");
             request.setBody(mail.build());
-            return sg.api(request);
+            Response r = sg.api(request);
+            System.out.println("Response: " + r);
+            return r;
         }
         catch (IOException ex) {
             throw ex;
@@ -84,6 +88,7 @@ public class EmailService {
     }
 
     public Response sendTestEmail() throws IOException {
+        System.out.println("API Key: " + apiKey);
         String from = "rhitcovidtracer@gmail.com";
         String subject = "Sending with SendGrid is Fun";
         String to = "maura.coriale@gmail.com";
