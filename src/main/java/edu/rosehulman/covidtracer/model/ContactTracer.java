@@ -47,4 +47,8 @@ public class ContactTracer {
 		this.user = user;
 	}
 
+	public double findCaseRatio() {
+		//need to find the number of cases
+
+	}
 }
