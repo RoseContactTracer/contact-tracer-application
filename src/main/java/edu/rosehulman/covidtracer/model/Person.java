@@ -46,7 +46,7 @@ public class Person implements Serializable {
 	public Person() {
 	}
 
-	public Person(String firstName, String middleName, String lastName, String roseID, String email, String phone, HousingLocation housing, UserRole role) {
+	public Person(String firstName, String middleName, String lastName, String roseID, String email, String phone, HousingLocation housing) {
 		this.firstName = firstName;
 		this.middleName = middleName;
 		this.lastName = lastName;
@@ -54,10 +54,9 @@ public class Person implements Serializable {
 		this.email = email;
 		this.phoneNumber = phone;
 		this.housingLocation = housing;
-		this.role = role;
 	}
 	
-	public Person(Long id, String firstName, String middleName, String lastName, String roseID, String email, String phone, HousingLocation housing) {
+	public Person(Long id, String firstName, String middleName, String lastName, String roseID, String email, String phone, HousingLocation housing, UserRole role) {
 		this.ID = id;
 		this.firstName = firstName;
 		this.middleName = middleName;
@@ -66,6 +65,7 @@ public class Person implements Serializable {
 		this.email = email;
 		this.phoneNumber = phone;
 		this.housingLocation = housing;
+		this.role = role;
 	}
 
 	public Long getID() {
