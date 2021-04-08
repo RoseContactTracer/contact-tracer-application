@@ -42,7 +42,6 @@ public class PersonController {
     	List<Person> resultSet = new ArrayList<Person>();
 		Optional<Person> person = repository.findById(id);
 		
-		
 		if(!person.isPresent()) throw new NotFoundException("id-" + id);
 		
 		resultSet.add(person.get());
@@ -54,7 +53,7 @@ public class PersonController {
 	public ResponseEntity<List<Person>> retrievePersonByEmail(@PathVariable String email) throws NotFoundException {
     	List<Person> resultSet = new ArrayList<Person>();
     	//get the right person
-		Optional<Person> person = repository.findByEmail(email);
+		Optional<Person> person = service.findByEmail(email);
 		
 		if(!person.isPresent()) throw new NotFoundException("email-" + email);
 		
