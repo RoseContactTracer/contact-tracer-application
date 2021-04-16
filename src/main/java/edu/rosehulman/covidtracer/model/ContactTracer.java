@@ -23,6 +23,9 @@ public class ContactTracer {
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id", nullable = false, unique = true)
 	private SystemUser user;
+
+	@Column(name = "MAX_CASES", nullable = false)
+	private int maxCases;
 	
 	public ContactTracer() {}
 	
@@ -49,6 +52,13 @@ public class ContactTracer {
 
 	public double findCaseRatio() {
 		//need to find the number of cases
+		return - 1.9;
+	}
 
+	public void assignCase(PositiveCase covidCase) {
+	}
+
+	public int getMaxCases() {
+		return this.maxCases;
 	}
 }

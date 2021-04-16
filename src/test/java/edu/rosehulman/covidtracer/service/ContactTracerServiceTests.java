@@ -5,7 +5,9 @@ import org.junit.Test;
 public class ContactTracerServiceTests {
 
     @Test
-    public void testAssignTracerToCase(){}
+    public void testAssignTracerToCase(){
+        
+    }
 
     @Test
     public void testAssignRandomTracerToCase(){}

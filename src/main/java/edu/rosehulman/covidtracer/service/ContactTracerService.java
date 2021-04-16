@@ -6,7 +6,6 @@ import edu.rosehulman.covidtracer.repository.ContactTracerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
 
 
@@ -18,21 +17,31 @@ public class ContactTracerService {
 
     public void assignContactTracer(PositiveCase covidCase){
         ContactTracer chosenTracer = chooseTracer(contactTracers.findAll());
+        assignContactTracer(chosenTracer, covidCase);
     }
 
     private ContactTracer chooseTracer(List<ContactTracer> all) {
         double lowestCaseRatio = 1;
-        ContactTracer mostLikelyTracer;
+        ContactTracer mostLikelyTracer = all.get(0);
         for(ContactTracer tracer : all){
-            if(tracer.findCaseRatio() < lowestCaseRatio){
+            if(findCaseRatio(tracer) < lowestCaseRatio){
                 mostLikelyTracer = tracer;
-                lowestCaseRatio = tracer.findCaseRatio();
+                lowestCaseRatio = findCaseRatio(tracer);
             }
         }
+        return mostLikelyTracer;
     }
 
-    public void assignContactTracer(ContactTracer tracer, PositiveCase covidCase){}
+    public void assignContactTracer(ContactTracer tracer, PositiveCase covidCase){
+        tracer.assignCase(covidCase);
+        covidCase.setContactTracer(tracer);
+        contactTracers.save(tracer);
+    }
 
-
+    public double findCaseRatio(ContactTracer tracer){
+        List<PositiveCase> cases = contactTracers.findCasesByTracer(tracer);
+        int currentCases = cases.size();
+        return currentCases/tracer.getMaxCases();
+    }
 
 }
