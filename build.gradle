@@ -27,6 +27,7 @@ dependencies {
 	}
 	testImplementation 'org.springframework.batch:spring-batch-test'
 	testImplementation 'org.springframework.security:spring-security-test'
+	testImplementation 'org.easymock:easymock:4.2'
 }
 
 test {
