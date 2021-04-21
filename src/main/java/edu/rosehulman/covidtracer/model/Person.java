@@ -116,7 +116,7 @@ public class Person implements Serializable {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public void setHousingLocation(HousingLocation housingLocation) {
+	public void setHousingLocation(String housingLocation) {
 		this.housingLocation = housingLocation;
 	}
 
@@ -124,7 +124,7 @@ public class Person implements Serializable {
 		return phoneNumber;
 	}
 
-	public HousingLocation getHousingLocation() {
+	public String getHousingLocation() {
 		return housingLocation;
 	}
 
