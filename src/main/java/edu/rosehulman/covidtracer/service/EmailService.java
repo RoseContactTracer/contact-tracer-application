@@ -22,7 +22,7 @@ public class EmailService {
     PersonService personService;
 
     @Value("${sendgrid.api-key}")
-    String apiKey;
+    private String apiKey;
 
     @Value("${email.template.basic}")
     public String basicTemplate;
@@ -79,7 +79,7 @@ public class EmailService {
             request.setEndpoint("mail/send");
             request.setBody(mail.build());
             Response r = sg.api(request);
-            System.out.println("Response: " + r);
+            System.out.println("Response: " + r.getStatusCode() + " " + r.getBody());
             return r;
         }
         catch (IOException ex) {
