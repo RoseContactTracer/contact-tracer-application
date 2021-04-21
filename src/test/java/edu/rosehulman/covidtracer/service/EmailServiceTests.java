@@ -1,4 +1,4 @@
-package edu.rosehulman.covidtracer.service;
+/*package edu.rosehulman.covidtracer.service;
 
 import com.sendgrid.Response;
 import edu.rosehulman.covidtracer.model.Person;
@@ -49,4 +49,4 @@ public class EmailServiceTests {
             e.printStackTrace();
         }
     }
-}
+}*/

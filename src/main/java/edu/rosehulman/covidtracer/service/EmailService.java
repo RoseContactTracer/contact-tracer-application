@@ -22,7 +22,7 @@ public class EmailService {
     PersonService personService;
 
     @Value("${sendgrid.api-key}")
-    String apiKey;
+    private String apiKey;
 
     @Value("${email.template.basic}")
     public String basicTemplate;
