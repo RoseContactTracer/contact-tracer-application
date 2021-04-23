@@ -26,7 +26,7 @@ import edu.rosehulman.covidtracer.repository.PositiveCaseRepository;
 import edu.rosehulman.covidtracer.service.PositiveCaseService;
 import javassist.NotFoundException;
 
-//@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 public class PositiveCaseController {
 
@@ -83,7 +83,6 @@ public class PositiveCaseController {
 
 	}
 	
-	@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 	@PutMapping("/positive-case/{id}")
 	public ResponseEntity<PositiveCase> updateContactTracer(@PathVariable("id") long id,
 			@RequestParam(name = "contactTracerID") Long contactTracerID) {

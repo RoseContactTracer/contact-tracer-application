@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-//@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 public class PersonController {
 
@@ -57,11 +57,11 @@ public class PersonController {
 		return new ResponseEntity<List<Person>>(resultSet, new HttpHeaders(), HttpStatus.OK);
 	}
     
-    @GetMapping(path = "/userlist/{email}")
+    @GetMapping(path = "/userlist/email/{email}")
 	public ResponseEntity<List<Person>> retrievePersonByEmail(@PathVariable String email) throws NotFoundException {
     	List<Person> resultSet = new ArrayList<Person>();
     	//get the right person
-		Optional<Person> person = service.findByEmail(email);
+		Optional<Person> person = repository.findByEmail(email);
 		
 		if(!person.isPresent()) throw new NotFoundException("email-" + email);
 		
@@ -69,23 +69,5 @@ public class PersonController {
 
 		return new ResponseEntity<List<Person>>(resultSet, new HttpHeaders(), HttpStatus.OK);
 	}
-    
-//    @GetMapping(path = "/login/settoken")
-//    @ResponseStatus(HttpStatus.CREATED)
-//	public ResponseEntity<List<Person>> setInitialToken(@RequestBody String token) throws NotFoundException {
-//    	System.out.println("helloooooo?????");
-//		String user = JWT.require(Algorithm.HMAC512(SecurityConstants.SECRET.getBytes()))
-//				.build()
-//                .verify(token.replace(SecurityConstants.TOKEN_PREFIX, ""))
-//                .getSubject();
-//
-//		// new arraylist means authorities
-//		UsernamePasswordAuthenticationToken newToken = new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
-//		
-//		SecurityContextHolder.getContext().setAuthentication(newToken);
-//		
-//		List<Person> resultSet = new ArrayList<Person>();
-//		return new ResponseEntity<List<Person>>(resultSet, new HttpHeaders(), HttpStatus.OK);
-//	}
 
 }

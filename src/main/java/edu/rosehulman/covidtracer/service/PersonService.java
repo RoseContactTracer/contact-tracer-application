@@ -33,8 +33,4 @@ public class PersonService {
         return new ArrayList<Person>();
     }
     
-    public Optional<Person> findByEmail(String email) {
-    	return repository.findByEmail(email);
-    }
-    
 }
