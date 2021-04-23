@@ -46,7 +46,7 @@ enum ROLE {
 				return "Contact Tracer";
 			case HEAD_CONTACT_TRACER:
 				return "Head Contact Tracer";
-			case STUDENT_AFFAIRS:
+			case STUDENT_AFFAIRS: //this should be split into support staff and head support staff
 				return "Student Affairs";
 			case SYSTEM_ADMIN:
 				return "System Admin";
