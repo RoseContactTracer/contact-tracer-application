@@ -1,12 +1,6 @@
 package edu.rosehulman.covidtracer.model;
 
-import java.io.Serializable;
-import java.util.Set;
-import java.util.UUID;
-
-import javax.persistence.*;
-
-enum ROLE {
+enum ROLES {
 	PERSON, HEALTH_SERVICES, CONTACT_TRACER, HEAD_CONTACT_TRACER, STUDENT_AFFAIRS;
 
 	public String toString(){
@@ -26,18 +20,18 @@ enum ROLE {
 		}
 	}
 
-	public static ROLE roleFromString(String role){
+	public static ROLES roleFromString(String role){
 		switch(role){
 			case "health services":
-				return ROLE.HEALTH_SERVICES;
+				return ROLES.HEALTH_SERVICES;
 			case "contact tracer":
-				return ROLE.CONTACT_TRACER;
+				return ROLES.CONTACT_TRACER;
 			case "head contact tracer":
-				return ROLE.HEAD_CONTACT_TRACER;
+				return ROLES.HEAD_CONTACT_TRACER;
 			case "student affairs":
-				return ROLE.STUDENT_AFFAIRS;
+				return ROLES.STUDENT_AFFAIRS;
 			default:
-				return ROLE.PERSON;
+				return ROLES.PERSON;
 		}
 	}
 }

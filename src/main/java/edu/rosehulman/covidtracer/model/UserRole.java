@@ -12,12 +12,12 @@ public class UserRole implements Serializable {
 	private Long ID;
 
 	@Column(name = "Role", nullable = false, unique = true)
-	private ROLE role;
+	private ROLES ROLES;
 
 	public UserRole() {}
 
 	public UserRole(String role) {
-		this.role = ROLE.roleFromString(role);
+		this.ROLES = ROLES.roleFromString(role);
 	}
 
 	public Long getID() {
@@ -25,7 +25,7 @@ public class UserRole implements Serializable {
 	}
 
 	public String getRole() {
-		return role.toString();
+		return ROLES.toString();
 	}
 
 }
