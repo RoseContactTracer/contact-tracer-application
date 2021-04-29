@@ -23,13 +23,20 @@ public class PersonService {
     private void showRepositoryInfo() {
         System.out.println("************PersonRepository autowired************  \n ->" + repository.getClass().getCanonicalName());
     }
-    
+
     public List<Person> getAllPersons(){
-        List<Person> result = repository.findAll();
-        if(!result.isEmpty()){
-            return result;
+        return repository.findAll();
+    }
+
+    public String getNameFromEmail(String email){
+        List<Person> people = repository.findByEmail(email);
+        System.out.println("We're doing this");
+        if(people.size() > 1 || people.size() == 0){
+            System.out.println("Couldnt find name in database");
+            return "Undefined";
         }
-        return new ArrayList<Person>();
+        System.out.println(people.toString());
+        return people.get(0).getFullName();
     }
 
 }
