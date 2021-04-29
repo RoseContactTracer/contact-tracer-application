@@ -30,10 +30,9 @@ public class Person implements Serializable {
 
 	@Column(name = "phone")
 	private String phoneNumber;
-	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "housing_location_id")
-	private HousingLocation housingLocation;
+
+	@Column(name = "home_address")
+	private String housingLocation;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "person_to_positive_pools", joinColumns = @JoinColumn(name = "person_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "positive_pool_id", referencedColumnName = "ID"))
@@ -42,7 +41,7 @@ public class Person implements Serializable {
 	public Person() {
 	}
 
-	public Person(String firstName, String middleName, String lastName, String roseID, String email, String phone, HousingLocation housing) {
+	public Person(String firstName, String middleName, String lastName, String roseID, String email, String phone, String housing) {
 		this.firstName = firstName;
 		this.middleName = middleName;
 		this.lastName = lastName;
@@ -52,15 +51,9 @@ public class Person implements Serializable {
 		this.housingLocation = housing;
 	}
 	
-	public Person(Long id, String firstName, String middleName, String lastName, String roseID, String email, String phone, HousingLocation housing) {
+	public Person(Long id, String firstName, String middleName, String lastName, String roseID, String email, String phone, String housing) {
+		this(firstName, middleName, lastName, roseID, email, phone, housing);
 		this.ID = id;
-		this.firstName = firstName;
-		this.middleName = middleName;
-		this.lastName = lastName;
-		this.roseID = roseID;
-		this.email = email;
-		this.phoneNumber = phone;
-		this.housingLocation = housing;
 	}
 
 	public Long getID() {
@@ -127,7 +120,7 @@ public class Person implements Serializable {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public void setHousingLocation(HousingLocation housingLocation) {
+	public void setHousingLocation(String housingLocation) {
 		this.housingLocation = housingLocation;
 	}
 
@@ -135,7 +128,7 @@ public class Person implements Serializable {
 		return phoneNumber;
 	}
 
-	public HousingLocation getHousingLocation() {
+	public String getHousingLocation() {
 		return housingLocation;
 	}
 

@@ -1,5 +1,11 @@
 package edu.rosehulman.covidtracer.model;
 
+import java.io.Serializable;
+import java.util.Set;
+import java.util.UUID;
+
+import javax.persistence.*;
+
 enum ROLES {
 	PERSON, HEALTH_SERVICES, CONTACT_TRACER, HEAD_CONTACT_TRACER, STUDENT_AFFAIRS;
 
@@ -35,3 +41,33 @@ enum ROLES {
 		}
 	}
 }
+
+
+
+@Entity
+public class Role implements Serializable {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "ID", nullable = false)
+	private Long ID;
+
+	@Column(name = "Role", nullable = false, unique = true)
+	private ROLE role;
+
+	public Role() {}
+
+	public Role(String role) {
+		this.role = ROLE.roleFromString(role);
+	}
+
+	public Long getID() {
+		return ID;
+	}
+
+	public String getRole() {
+		return role.toString();
+	}
+
+}
+
