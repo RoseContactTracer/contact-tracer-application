@@ -18,6 +18,7 @@ import edu.rosehulman.covidtracer.model.PositiveCase;
 import edu.rosehulman.covidtracer.model.QuarantineLocation;
 import edu.rosehulman.covidtracer.repository.PositiveCaseRepository;
 import edu.rosehulman.covidtracer.repository.QuarantineLocationRepository;
+import java.util.Optional;
 
 @Service
 public class PositiveCaseService {
@@ -31,6 +32,10 @@ public class PositiveCaseService {
             return result;
         }
         return new ArrayList<PositiveCase>();
+    }
+    public List<PositiveCase> getAllAssignedCases() {
+        List<PositiveCase> result = repository.findAllAssignedCases();
+        return result;
     }
     
     public Long createPositiveCase(Person person, Date testDate, Date symptomaticStartDate, Date quarantineEndDate, boolean needsTransportation) {

@@ -100,6 +100,11 @@ public class PositiveCaseController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+	@GetMapping("/positive-case/assignedCases")
+	public ResponseEntity<List<PositiveCase>> getAllAssignedCases(){
+		List<PositiveCase> resultSet = service.getAllAssignedCases();
+		return new ResponseEntity<List<PositiveCase>>(resultSet, new HttpHeaders(), HttpStatus.OK);
+	}
 
 }
 

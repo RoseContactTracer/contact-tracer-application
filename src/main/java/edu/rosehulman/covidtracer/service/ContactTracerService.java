@@ -15,22 +15,22 @@ public class ContactTracerService {
     @Autowired
     ContactTracerRepository contactTracers;
 
-    public void assignContactTracer(PositiveCase covidCase){
-        ContactTracer chosenTracer = chooseTracer(contactTracers.findAll());
-        assignContactTracer(chosenTracer, covidCase);
-    }
+//    public void assignContactTracer(PositiveCase covidCase){
+//        ContactTracer chosenTracer = chooseTracer(contactTracers.findAll());
+//        assignContactTracer(chosenTracer, covidCase);
+//    }
 
-    private ContactTracer chooseTracer(List<ContactTracer> all) {
-        double lowestCaseRatio = 1;
-        ContactTracer mostLikelyTracer = all.get(0);
-        for(ContactTracer tracer : all){
-            if(findCaseRatio(tracer) < lowestCaseRatio){
-                mostLikelyTracer = tracer;
-                lowestCaseRatio = findCaseRatio(tracer);
-            }
-        }
-        return mostLikelyTracer;
-    }
+//    private ContactTracer chooseTracer(List<ContactTracer> all) {
+//        double lowestCaseRatio = 1;
+//        ContactTracer mostLikelyTracer = all.get(0);
+//        for(ContactTracer tracer : all){
+//            if(findCaseRatio(tracer) < lowestCaseRatio){
+//                mostLikelyTracer = tracer;
+//                lowestCaseRatio = findCaseRatio(tracer);
+//            }
+//        }
+//        return mostLikelyTracer;
+//    }
 
     public void assignContactTracer(ContactTracer tracer, PositiveCase covidCase){
         tracer.assignCase(covidCase);
@@ -38,10 +38,10 @@ public class ContactTracerService {
         contactTracers.save(tracer);
     }
 
-    public double findCaseRatio(ContactTracer tracer){
-        List<PositiveCase> cases = contactTracers.findCasesByTracer(tracer);
-        int currentCases = cases.size();
-        return currentCases/tracer.getMaxCases();
-    }
+//    public double findCaseRatio(ContactTracer tracer){
+//        List<PositiveCase> cases = contactTracers.findCasesByTracer(tracer);
+//        int currentCases = cases.size();
+//        return currentCases/tracer.getMaxCases();
+//    }
 
 }
