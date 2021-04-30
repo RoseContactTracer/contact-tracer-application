@@ -21,17 +21,17 @@ public class ContactTracer {
 	private Long ID;
 
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id", nullable = false, unique = true)
-	private SystemUser user;
+	@JoinColumn(name = "person_id", nullable = false, unique = true)
+	private Person person;
 
 	@Column(name = "MAX_CASES", nullable = false)
 	private int maxCases;
 	
 	public ContactTracer() {}
 	
-	public ContactTracer(Long ID, SystemUser user) {
+	public ContactTracer(Long ID, Person person) {
 		this.ID = ID;
-		this.user = user;
+		this.person = person;
 	}
 
 	public Long getID() {
@@ -42,12 +42,12 @@ public class ContactTracer {
 		ID = iD;
 	}
 
-	public SystemUser getUser() {
-		return user;
+	public Person getUser() {
+		return person;
 	}
 
-	public void setUser(SystemUser user) {
-		this.user = user;
+	public void setUser(Person person) {
+		this.person = person;
 	}
 
 	public double findCaseRatio() {

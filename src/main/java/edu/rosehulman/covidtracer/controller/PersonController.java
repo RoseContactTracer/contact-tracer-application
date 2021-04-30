@@ -48,5 +48,18 @@ public class PersonController {
 		
 		return new ResponseEntity<List<Person>>(resultSet, new HttpHeaders(), HttpStatus.OK);
 	}
+    
+    @GetMapping(path = "/userlist/email/{email}")
+	public ResponseEntity<List<Person>> retrievePersonByEmail(@PathVariable String email) throws NotFoundException {
+    	List<Person> resultSet = new ArrayList<Person>();
+    	//get the right person
+		Optional<Person> person = repository.findByEmail(email);
+		
+		if(!person.isPresent()) throw new NotFoundException("email-" + email);
+		
+		resultSet.add(person.get());
+
+		return new ResponseEntity<List<Person>>(resultSet, new HttpHeaders(), HttpStatus.OK);
+	}
 
 }
