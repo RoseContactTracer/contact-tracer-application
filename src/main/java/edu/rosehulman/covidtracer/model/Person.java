@@ -1,6 +1,9 @@
 package edu.rosehulman.covidtracer.model;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.Set;
 import java.util.UUID;
@@ -35,6 +38,7 @@ public class Person implements Serializable {
 	@JoinColumn(name = "housing_location_id")
 	private HousingLocation housingLocation;
 
+	@JsonIgnore
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "person_to_positive_pools", joinColumns = @JoinColumn(name = "person_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "positive_pool_id", referencedColumnName = "ID"))
 	private Set<PositivePool> positivePools;
