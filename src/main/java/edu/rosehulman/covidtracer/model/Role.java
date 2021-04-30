@@ -1,8 +1,6 @@
 package edu.rosehulman.covidtracer.model;
 
 import java.io.Serializable;
-import java.util.Set;
-import java.util.UUID;
 
 import javax.persistence.*;
 
@@ -15,12 +13,12 @@ public class Role implements Serializable {
 	private Long ID;
 
 	@Column(name = "Role", nullable = false, unique = true)
-	private ROLE role;
+	private ROLES role;
 
 	public Role() {}
 
 	public Role(String role) {
-		this.role = ROLE.roleFromString(role);
+		this.role = ROLES.roleFromString(role);
 	}
 
 	public Long getID() {
@@ -33,7 +31,7 @@ public class Role implements Serializable {
 
 }
 
-enum ROLE {
+enum ROLES {
 	PERSON, HEALTH_SERVICES, CONTACT_TRACER, HEAD_CONTACT_TRACER, STUDENT_AFFAIRS, SYSTEM_ADMIN;
 
 	public String toString(){
@@ -55,20 +53,20 @@ enum ROLE {
 		}
 	}
 
-	public static ROLE roleFromString(String role){
+	public static ROLES roleFromString(String role){
 		switch(role){
 			case "health services":
-				return ROLE.HEALTH_SERVICES;
+				return ROLES.HEALTH_SERVICES;
 			case "contact tracer":
-				return ROLE.CONTACT_TRACER;
+				return ROLES.CONTACT_TRACER;
 			case "head contact tracer":
-				return ROLE.HEAD_CONTACT_TRACER;
+				return ROLES.HEAD_CONTACT_TRACER;
 			case "student affairs":
-				return ROLE.STUDENT_AFFAIRS;
+				return ROLES.STUDENT_AFFAIRS;
 			case "system admin":
-				return ROLE.SYSTEM_ADMIN;
+				return ROLES.SYSTEM_ADMIN;
 			default:
-				return ROLE.PERSON;
+				return ROLES.PERSON;
 		}
 	}
 }
