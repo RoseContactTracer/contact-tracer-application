@@ -24,12 +24,12 @@ public class SystemUser implements Serializable {
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "role_id", nullable = false)
-	private Role role;
+	private UserRole role;
 
 	public SystemUser() {
 	}
 
-	public SystemUser(Person person, String password, String salt, Role role) {
+	public SystemUser(Person person, String password, String salt, UserRole role) {
 		this.person = person;
 		this.password = password;
 		this.salt = salt;
@@ -48,7 +48,7 @@ public class SystemUser implements Serializable {
 		return password;
 	}
 
-	public Role getRole() {
+	public UserRole getRole() {
 		return role;
 	}
 
