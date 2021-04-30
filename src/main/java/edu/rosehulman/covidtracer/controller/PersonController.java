@@ -1,5 +1,6 @@
 package edu.rosehulman.covidtracer.controller;
 
+import edu.rosehulman.covidtracer.SecurityConfig;
 import edu.rosehulman.covidtracer.SecurityConstants;
 import edu.rosehulman.covidtracer.model.Person;
 import edu.rosehulman.covidtracer.model.PositiveCase;
@@ -29,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+//@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 public class PersonController {
 

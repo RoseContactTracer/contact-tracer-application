@@ -1,6 +1,7 @@
 package edu.rosehulman.covidtracer;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.context.annotation.Bean;
@@ -27,12 +28,11 @@ import com.auth0.jwt.algorithms.Algorithm;
 import edu.rosehulman.covidtracer.model.Person;
 import javassist.NotFoundException;
 
-//@EnableWebSecurity
+@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
-		System.out.println("yeah this happens");
         http.cors().and().authorizeRequests()
                 .antMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL).permitAll()
                 .anyRequest().authenticated()
