@@ -22,6 +22,9 @@ public class Student implements Serializable {
 
 	@Column(name = "Athletics")
 	private ArrayList<String> athletics;
+	
+	@Column(name = "Other")
+	private String otherInfo;
 
 	public Student() {
 	}
