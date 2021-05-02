@@ -18,7 +18,7 @@ public class UserRole implements Serializable {
 	public UserRole() {}
 
 	public UserRole(String role) {
-		this.role = ROLES.roleFromString(role);
+		this.role = ROLE.roleFromString(role);
 	}
 
 	public Long getID() {
@@ -44,7 +44,7 @@ enum ROLES {
 				return "Contact Tracer";
 			case HEAD_CONTACT_TRACER:
 				return "Head Contact Tracer";
-			case STUDENT_AFFAIRS:
+			case STUDENT_AFFAIRS: //this should be split into support staff and head support staff
 				return "Student Affairs";
 			case SYSTEM_ADMIN:
 				return "System Admin";

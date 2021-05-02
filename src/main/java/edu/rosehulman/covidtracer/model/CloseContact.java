@@ -42,7 +42,7 @@ public class CloseContact implements Serializable {
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "contact_tracer_id")
-	private ContactTracer contactTracer;
+	private Person contactTracer;
 	
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "quarantine_location_id")
@@ -78,7 +78,7 @@ public class CloseContact implements Serializable {
 		return positiveCase;
 	}
 
-	public void setContactTracer(ContactTracer contactTracer) {
+	public void setContactTracer(Person contactTracer) {
 		this.contactTracer = contactTracer;
 	}
 
