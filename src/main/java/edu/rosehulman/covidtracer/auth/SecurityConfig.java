@@ -1,4 +1,4 @@
-package edu.rosehulman.covidtracer;
+package edu.rosehulman.covidtracer.auth;
 
 import java.util.ArrayList;
 import java.util.Date;

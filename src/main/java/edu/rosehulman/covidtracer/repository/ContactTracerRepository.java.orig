@@ -11,8 +11,7 @@ import java.util.List;
 
 @Repository
 public interface ContactTracerRepository extends JpaRepository<ContactTracer, Long> {
-
-    @Query(value = "select * from positive_case where postive_case.contact_tracer_id = ?1", nativeQuery = true)
-    List<PositiveCase> findCasesByTracer(Long id);
-    
+//
+//    @Query
+//    List<PositiveCase> findCasesByTracer(ContactTracer tracer);
 }

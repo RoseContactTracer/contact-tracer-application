@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.rosehulman.covidtracer.model.ContactTracer;
 import edu.rosehulman.covidtracer.model.Person;
 import edu.rosehulman.covidtracer.model.PositiveCase;
+import edu.rosehulman.covidtracer.repository.ContactTracerRepository;
 import edu.rosehulman.covidtracer.repository.PersonRepository;
 import edu.rosehulman.covidtracer.repository.PositiveCaseRepository;
 import edu.rosehulman.covidtracer.service.PositiveCaseService;
@@ -39,8 +41,8 @@ public class PositiveCaseController {
 	@Autowired
 	private PersonRepository personRepo;
 
-	//@Autowired
-	//private ContactTracerRepository contactTracerRepo;
+	@Autowired
+	private ContactTracerRepository contactTracerRepo;
 
 	@GetMapping("/positive-case")
 	public ResponseEntity<List<PositiveCase>> getAllPositiveCases() {
@@ -87,7 +89,7 @@ public class PositiveCaseController {
 	public ResponseEntity<PositiveCase> updateContactTracer(@PathVariable("id") long id,
 			@RequestParam(name = "contactTracerID") Long contactTracerID) {
 		Optional<PositiveCase> existingCase = repository.findById(id);
-		Optional<Person> tracer = personRepo.findById(contactTracerID);
+		Optional<ContactTracer> tracer = contactTracerRepo.findById(contactTracerID);
 
 		if (existingCase.isPresent() && tracer.isPresent()) {
 			PositiveCase _case = existingCase.get();

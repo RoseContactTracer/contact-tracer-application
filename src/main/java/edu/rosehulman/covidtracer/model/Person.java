@@ -44,7 +44,7 @@ public class Person implements Serializable {
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "role_id", nullable = false)
-	private UserRole role;
+	private Role role;
 
 	public Person() {
 	}
@@ -59,8 +59,15 @@ public class Person implements Serializable {
 		this.housingLocation = housing;
 	}
 	
-	public Person(Long id, String firstName, String middleName, String lastName, String roseID, String email, String phone, String housing, UserRole role) {
+	public Person(Long id, String firstName, String middleName, String lastName, String roseID, String email, String phone, String housing, Role role) {
 		this.ID = id;
+		this.firstName = firstName;
+		this.middleName = middleName;
+		this.lastName = lastName;
+		this.roseID = roseID;
+		this.email = email;
+		this.phoneNumber = phone;
+		this.housingLocation = housing;
 		this.role = role;
 	}
 
@@ -88,7 +95,7 @@ public class Person implements Serializable {
 		return roseID;
 	}
 	
-	public UserRole getRole() {
+	public Role getRole() {
 		return this.role;
 	}
 

@@ -5,7 +5,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-public class UserRole implements Serializable {
+public class Role implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,10 +15,10 @@ public class UserRole implements Serializable {
 	@Column(name = "Role", nullable = false, unique = true)
 	private ROLES role;
 
-	public UserRole() {}
+	public Role() {}
 
-	public UserRole(String role) {
-		this.role = ROLE.roleFromString(role);
+	public Role(String role) {
+		this.role = ROLES.roleFromString(role);
 	}
 
 	public Long getID() {

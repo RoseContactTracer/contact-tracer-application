@@ -10,7 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import edu.rosehulman.covidtracer.model.UserRole;
+import edu.rosehulman.covidtracer.model.Role;
 import edu.rosehulman.covidtracer.repository.RoleRepository;
 
 @Service
@@ -19,13 +19,13 @@ public class RoleService {
 	@Autowired
     RoleRepository repository;
 
-    public List<UserRole> getAllStudents(){
+    public List<Role> getAllStudents(){
         Pageable pageProperties = PageRequest.of(0, 10, Sort.by("id"));
-        Page<UserRole> result = repository.findAll(pageProperties);
+        Page<Role> result = repository.findAll(pageProperties);
         if(result.hasContent()){
             return result.getContent();
         }
-        return new ArrayList<UserRole>();
+        return new ArrayList<Role>();
     }
 	
 }

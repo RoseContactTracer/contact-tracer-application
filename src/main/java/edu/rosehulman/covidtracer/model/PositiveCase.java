@@ -32,7 +32,7 @@ public class PositiveCase implements Serializable {
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "contact_tracer_id")
-	private Person contactTracer;
+	private ContactTracer contactTracer;
 	
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "quarantine_location_id")
@@ -74,7 +74,7 @@ public class PositiveCase implements Serializable {
 		return needsTransportation;
 	}
 	
-	public void setContactTracer(Person tracer) {
+	public void setContactTracer(ContactTracer tracer) {
 		this.contactTracer = tracer;
 	}
 
@@ -82,7 +82,7 @@ public class PositiveCase implements Serializable {
 		this.quarantineLocation = quarantineLocation;
 	}
 
-	public Person getContactTracer() {
+	public ContactTracer getContactTracer() {
 		return contactTracer;
 	}
 
