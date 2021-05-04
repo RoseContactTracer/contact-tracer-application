@@ -7,6 +7,7 @@ application.properties
 !**/src/test/**/build/
 .metadata/
 sendgrid.env
+src/main/java/edu/rosehulman/covidtracer/auth/SecurityConstants.java
 
 ### STS ###
 .apt_generated
