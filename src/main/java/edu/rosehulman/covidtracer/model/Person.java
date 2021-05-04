@@ -106,6 +106,10 @@ public class Person implements Serializable {
 	public void setPositivePools(Set<PositivePool> positivePools) {
 		this.positivePools = positivePools;
 	}
+	
+	public void addPositivePools(PositivePool pool) {
+		this.positivePools.add(pool);
+	}
 
 	public void setID(Long iD) {
 		ID = iD;
