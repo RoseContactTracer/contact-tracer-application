@@ -19,7 +19,7 @@ public class ContactTracerServiceTests {
         ContactTracerRepository contactTracerRepository = EasyMock.mock(ContactTracerRepository.class);
         PositiveCase positiveCase = EasyMock.mock(PositiveCase.class);
         ArrayList<PositiveCase> casesAssignedAlready = EasyMock.mock(new ArrayList<PositiveCase>().getClass());
-        EasyMock.expect(contactTracerRepository.findCasesByTracer(tracer)).andReturn(casesAssignedAlready);
+        EasyMock.expect(contactTracerRepository.findCasesByTracer(tracer.getID())).andReturn(casesAssignedAlready);
         EasyMock.expect(casesAssignedAlready.size()).andReturn(9);
         EasyMock.expect(tracer.getMaxCases()).andReturn(10);
         ContactTracerService service = new ContactTracerService();
