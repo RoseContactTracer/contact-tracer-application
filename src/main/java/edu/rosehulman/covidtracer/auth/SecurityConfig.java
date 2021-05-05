@@ -28,7 +28,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import edu.rosehulman.covidtracer.model.Person;
 import javassist.NotFoundException;
 
-//@EnableWebSecurity
+@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
