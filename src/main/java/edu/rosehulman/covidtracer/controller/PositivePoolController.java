@@ -46,6 +46,12 @@ public class PositivePoolController {
 		return new ResponseEntity<List<PositivePool>>(resultSet, new HttpHeaders(), HttpStatus.OK);
 	}
 	
+	@GetMapping("/positive-pool/new")
+	public ResponseEntity<List<PositivePool>> getTodaysPositivePools() {
+		List<PositivePool> resultSet = service.getNewPools();
+		return new ResponseEntity<List<PositivePool>>(resultSet, new HttpHeaders(), HttpStatus.OK);
+	}
+	
 	@PostMapping("/positive-pool")
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<List<PositivePool>> addNewPositivePool(@RequestBody String[] emails) throws NotFoundException {

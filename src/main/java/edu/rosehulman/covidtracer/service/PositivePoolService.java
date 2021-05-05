@@ -29,7 +29,15 @@ public class PositivePoolService {
     }
     
     public List<PositivePool> getAllPools(){
-        List<PositivePool> result = repository.findAll();
+        List<PositivePool> result = repository.findAllOrdered();
+        if(!result.isEmpty()){
+            return result;
+        }
+        return new ArrayList<PositivePool>();
+    }
+    
+    public List<PositivePool> getNewPools(){
+        List<PositivePool> result = repository.findNew();
         if(!result.isEmpty()){
             return result;
         }
