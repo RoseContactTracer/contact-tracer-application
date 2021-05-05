@@ -49,18 +49,7 @@ public class Person implements Serializable {
 	public Person() {
 	}
 
-	public Person(String firstName, String middleName, String lastName, String roseID, String email, String phone, String housing) {
-		this.firstName = firstName;
-		this.middleName = middleName;
-		this.lastName = lastName;
-		this.roseID = roseID;
-		this.email = email;
-		this.phoneNumber = phone;
-		this.housingLocation = housing;
-	}
-	
-	public Person(Long id, String firstName, String middleName, String lastName, String roseID, String email, String phone, String housing, Role role) {
-		this.ID = id;
+	public Person(String firstName, String middleName, String lastName, String roseID, String email, String phone, String housing, Role role) {
 		this.firstName = firstName;
 		this.middleName = middleName;
 		this.lastName = lastName;
@@ -69,6 +58,11 @@ public class Person implements Serializable {
 		this.phoneNumber = phone;
 		this.housingLocation = housing;
 		this.role = role;
+	}
+	
+	public Person(Long id, String firstName, String middleName, String lastName, String roseID, String email, String phone, String housing, Role role) {
+		this(firstName, middleName, lastName, roseID, email, phone, housing, role);
+		this.ID = id;
 	}
 
 	public Long getID() {
