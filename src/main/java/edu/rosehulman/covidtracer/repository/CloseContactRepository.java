@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import edu.rosehulman.covidtracer.model.CloseContact;
 
 @Repository
-public interface CloseContactRepository extends JpaRepository<CloseContact, Long>{
+public interface CloseContactRepository extends JpaRepository<CloseContact, Long> {
 
 }

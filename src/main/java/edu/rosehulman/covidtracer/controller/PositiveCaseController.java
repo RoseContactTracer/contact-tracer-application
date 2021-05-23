@@ -85,7 +85,6 @@ public class PositiveCaseController {
 
 	}
 	
-	@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 	@PutMapping("/positive-case/{id}")
 	public ResponseEntity<PositiveCase> updateContactTracer(@PathVariable("id") long id,
 			@RequestParam(name = "contactTracerID") Long contactTracerID) {
@@ -99,6 +98,11 @@ public class PositiveCaseController {
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+	}
+	@GetMapping("/positive-case/assignedCases")
+	public ResponseEntity<List<PositiveCase>> getAllAssignedCases(){
+		List<PositiveCase> resultSet = service.getAllAssignedCases();
+		return new ResponseEntity<List<PositiveCase>>(resultSet, new HttpHeaders(), HttpStatus.OK);
 	}
 
 }

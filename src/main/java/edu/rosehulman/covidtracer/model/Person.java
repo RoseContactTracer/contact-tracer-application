@@ -1,6 +1,9 @@
 package edu.rosehulman.covidtracer.model;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.Set;
 import java.util.UUID;
@@ -34,14 +37,19 @@ public class Person implements Serializable {
 	@Column(name = "home_address")
 	private String housingLocation;
 
+	@JsonIgnore
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "person_to_positive_pools", joinColumns = @JoinColumn(name = "person_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "positive_pool_id", referencedColumnName = "ID"))
 	private Set<PositivePool> positivePools;
+	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "role_id", nullable = false)
+	private Role role;
 
 	public Person() {
 	}
 
-	public Person(String firstName, String middleName, String lastName, String roseID, String email, String phone, String housing) {
+	public Person(String firstName, String middleName, String lastName, String roseID, String email, String phone, String housing, Role role) {
 		this.firstName = firstName;
 		this.middleName = middleName;
 		this.lastName = lastName;
@@ -49,10 +57,11 @@ public class Person implements Serializable {
 		this.email = email;
 		this.phoneNumber = phone;
 		this.housingLocation = housing;
+		this.role = role;
 	}
 	
-	public Person(Long id, String firstName, String middleName, String lastName, String roseID, String email, String phone, String housing) {
-		this(firstName, middleName, lastName, roseID, email, phone, housing);
+	public Person(Long id, String firstName, String middleName, String lastName, String roseID, String email, String phone, String housing, Role role) {
+		this(firstName, middleName, lastName, roseID, email, phone, housing, role);
 		this.ID = id;
 	}
 
@@ -79,6 +88,10 @@ public class Person implements Serializable {
 	public String getRoseID() {
 		return roseID;
 	}
+	
+	public Role getRole() {
+		return this.role;
+	}
 
 	public Set<PositivePool> getPositivePools() {
 		return positivePools;
@@ -86,6 +99,10 @@ public class Person implements Serializable {
 
 	public void setPositivePools(Set<PositivePool> positivePools) {
 		this.positivePools = positivePools;
+	}
+	
+	public void addPositivePools(PositivePool pool) {
+		this.positivePools.add(pool);
 	}
 
 	public void setID(Long iD) {

@@ -7,3 +7,4 @@ spring.jpa.show-sql=true
 spring.jpa.generate-ddl=true
 server.port=42069
 spring.security=disabled
+secret=VERY-SECRET
